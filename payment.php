@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>Grocery Store a Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Payment :: w3layouts</title>
-<body><?php include "header.php"?>
+<body><?php include 'header.php'?>
 
 		<div class="w3l_banner_nav_right">
 <!-- payment -->
@@ -127,6 +127,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 <!-- //banner -->
 
-<?php include "footer.php"?>
+<?php include 'footer.php'?>
 </body>
 </html>

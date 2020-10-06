@@ -1,15 +1,15 @@
 <?php
-require("dbcon.php");
+require 'dbcon.php';
 $category = isset($_GET['id']) ? (int) $_GET['id'] : 0;
-if($category) {
+if ($category) {
     $result = mysqli_query($conn, "SELECT * FROM `category` WHERE `cid` = $category");
     $row = $result->fetch_assoc();
     $category_name = $row['name'];
-    $title = ucwords($category_name)." products";
+    $title = ucwords($category_name).' products';
     $result = mysqli_query($conn, "SELECT * FROM `product` WHERE `cid` = $category");
 } else {
-    $title = "All products";
-    $result = mysqli_query($conn, "SELECT * FROM `product` LIMIT 20");
+    $title = 'All products';
+    $result = mysqli_query($conn, 'SELECT * FROM `product` LIMIT 20');
 }
 ?>
 <!--
@@ -23,7 +23,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
 <title><?php echo $title; ?> | Grocery Store</title>
 <body>
-    <?php include "header.php"?>
+    <?php include 'header.php'?>
 		<div class="w3l_banner_nav_right">
 			<div class="w3l_banner_nav_right_banner4">
 				<h3>Best Deals For New Products<span class="blink_me"></span></h3>
@@ -33,20 +33,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="w3ls_w3l_banner_nav_right_grid1">
 					<!--<h6>cleaning</h6>-->
                 <?php
-                if($result->num_rows) {
-                    while($product = $result->fetch_assoc()) {
+                if ($result->num_rows) {
+                    while ($product = $result->fetch_assoc()) {
                         $pid = $product['pid'];
                         $name = $product['name'];
-                        $weight = trim($product['weight'], "()");
+                        $weight = trim($product['weight'], '()');
                         $pic = $product['pic'];
                         $price = $product['price'];
                         $discount = $product['discount'];
                         $discount_money = $price * ($product['discount'] / 100);
-                        $new_price = $discount == 0 
-                            ? $price 
-                            : $product['price']*(1-($product['discount'] / 100));
-                        
-                ?>
+                        $new_price = $discount == 0
+                            ? $price
+                            : $product['price'] * (1 - ($product['discount'] / 100)); ?>
 				<div class="col-md-3 top_brand_left" style="margin-bottom:15px">
 					<div class="hover14 column">
 						<div class="agile_top_brand_left_grid">
@@ -61,12 +59,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                 <img title="<?php echo $name; ?>" alt="<?php echo $name; ?>" src="<?php echo $pic; ?>" width="140">
                                             </a>		
 											<p>
-                                                <?php echo $name.($weight ? " ($weight)" : ""); ?>
+                                                <?php echo $name.($weight ? " ($weight)" : ''); ?>
                                             </p>
 											<h4>
                                                 <i class="fa fa-rupee"></i> <?php echo $new_price; ?>
                                                 <span>
-                                                    <?php if($discount) { ?>
+                                                    <?php if ($discount) { ?>
                                                     <i class="fa fa-rupee"></i> <?php echo $product['price']; } ?>
                                                 </span>
                                             </h4>
@@ -110,6 +108,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     <div class="clearfix"></div>
 </div>
-<?php include "footer.php"?>
+<?php include 'footer.php'?>
 </body>
 </html>

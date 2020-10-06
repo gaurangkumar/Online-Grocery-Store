@@ -1,6 +1,6 @@
 <?php
-require("dbcon.php");
-$result = mysqli_query($conn, "SELECT * FROM `product` LIMIT 8");
+require 'dbcon.php';
+$result = mysqli_query($conn, 'SELECT * FROM `product` LIMIT 8');
 ?>
 <!--
 author: W3layouts
@@ -12,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>Grocery Store </title>
-<body><?php include "header.php"?>
+<body><?php include 'header.php'?>
             <div class="w3l_banner_nav_right">
                 <section class="slider">
                     <div class="flexslider">
@@ -73,20 +73,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<h3>Hot Offers</h3>
 			<div class="agile_top_brands_grids">
                 <?php
-                if($result->num_rows) {
-                    while($product = $result->fetch_assoc()) {
+                if ($result->num_rows) {
+                    while ($product = $result->fetch_assoc()) {
                         $pid = $product['pid'];
                         $name = $product['name'];
-                        $weight = trim($product['weight'], "()");
+                        $weight = trim($product['weight'], '()');
                         $pic = $product['pic'];
                         $price = $product['price'];
                         $discount = $product['discount'];
                         $discount_money = $price * ($product['discount'] / 100);
-                        $new_price = $discount == 0 
-                            ? $price 
-                            : $product['price']*(1-($product['discount'] / 100));
-                        
-                ?>
+                        $new_price = $discount == 0
+                            ? $price
+                            : $product['price'] * (1 - ($product['discount'] / 100)); ?>
 				<div class="col-md-3 top_brand_left" style="margin-bottom:15px">
 					<div class="hover14 column">
 						<div class="agile_top_brand_left_grid">
@@ -101,12 +99,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                 <img title="<?php echo $name; ?>" alt="<?php echo $name; ?>" src="<?php echo $pic; ?>" width="140">
                                             </a>		
 											<p>
-                                                <?php echo $name.($weight ? " ($weight)" : ""); ?>
+                                                <?php echo $name.($weight ? " ($weight)" : ''); ?>
                                             </p>
 											<h4>
                                                 <i class="fa fa-rupee"></i> <?php echo $new_price; ?>
                                                 <span>
-                                                    <?php if($discount) { ?>
+                                                    <?php if ($discount) { ?>
                                                     <i class="fa fa-rupee"></i> <?php echo $product['price']; } ?>
                                                 </span>
                                             </h4>
@@ -210,7 +208,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 		</div>
 	</div>
-    <?php include "footer.php"?>
+    <?php include 'footer.php'?>
     
 </body>
 </html>

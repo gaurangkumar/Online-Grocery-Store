@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>Grocery Store </title>
-<body><?php include "header.php"?>
+<body><?php include 'header.php'?>
 
 		<div class="w3l_banner_nav_right">
 			<div class="w3l_banner_nav_right_<img src="images/pc2.png" alt=""  style="height:300px; width:1070px;">
@@ -477,6 +477,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<div class="clearfix"></div>
 	</div>
-<?php include "footer.php"?>
+<?php include 'footer.php'?>
 </body>
 </html>

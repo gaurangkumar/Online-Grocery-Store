@@ -10,68 +10,50 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						
 	
             <?php
-			
-	
-if(isset($_POST['submit']))
-{	
-	$n= $_POST['Name'];
-			$m= $_POST['Mobile'];
-			$a1= $_POST['Address'];
-	
-	$c= $_POST['City'];
-	$g= $_POST['Gn'];
-	$u= $_POST['Username']; 
-	$p= $_POST['Password'];
- 
- 
-$sql = "INSERT INTO user(name,mobile,address1,gender,username,password)VALUES ('$n', '$m' ,'$a1','$g','$u','$p')";
 
-if ($conn->query($sql) === TRUE) {
-    
-	 header("Location:login.php");
-	 exit;
-	
-	
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
+if (isset($_POST['submit'])) {
+    $n = $_POST['Name'];
+    $m = $_POST['Mobile'];
+    $a1 = $_POST['Address'];
+
+    $c = $_POST['City'];
+    $g = $_POST['Gn'];
+    $u = $_POST['Username'];
+    $p = $_POST['Password'];
+
+    $sql = "INSERT INTO user(name,mobile,address1,gender,username,password)VALUES ('$n', '$m' ,'$a1','$g','$u','$p')";
+
+    if ($conn->query($sql) === true) {
+        header('Location:login.php');
+        exit;
+    } else {
+        echo 'Error: '.$sql.'<br>'.$conn->error;
+    }
 }
  ?><?php
- 					
-	   if(isset($_POST['login']))
-	   {
-		   $un=$_POST['User'];
-	        $pw=$_POST['Pass'];
-			$msg="" ;
-		    $sql="SELECT  username,password FROM user WHERE username='$un' AND  password='$pw'  " ;
-			$result = mysqli_query($conn,$sql);
-           $num = mysqli_num_rows($result);
-		$row=mysqli_fetch_array($result);
-			
-			if($row['username']!=$un && $row['password']!=$pw)
-						{
-							  
-							if($row['password']!=$pw)
-							{
-									
-									$msg= "Wrong Password";
-							}
-							else 
-							{
-								$msg="Wrong Username";
-							}
-							
-						
-						}
-				else{
-			  		  
-					 
-					  header("Location: index.php");
-        exit;
-				}
-	   }
 
-			?>
+       if (isset($_POST['login'])) {
+           $un = $_POST['User'];
+           $pw = $_POST['Pass'];
+           $msg = '';
+           $sql = "SELECT  username,password FROM user WHERE username='$un' AND  password='$pw'  ";
+           $result = mysqli_query($conn, $sql);
+           $num = mysqli_num_rows($result);
+           $row = mysqli_fetch_array($result);
+
+           if ($row['username'] != $un && $row['password'] != $pw) {
+               if ($row['password'] != $pw) {
+                   $msg = 'Wrong Password';
+               } else {
+                   $msg = 'Wrong Username';
+               }
+           } else {
+               header('Location: index.php');
+               exit;
+           }
+       }
+
+            ?>
 			
 		
 
@@ -81,7 +63,7 @@ if ($conn->query($sql) === TRUE) {
 <html>
 <head>
 <title>Grocery Store</title>
-<body><?php include "header.php" ?>
+<body><?php include 'header.php' ?>
 		
 		<div class="w3l_banner_nav_right">
 <!-- login -->
@@ -98,8 +80,8 @@ if ($conn->query($sql) === TRUE) {
        			<h2>Login to your account</h2>
                
 					<form action="" method="post">
-                     <?php 
-					 echo "$msg" ;?>
+                     <?php
+                     echo "$msg"; ?>
 					  <input type="text" name="User" placeholder="Username" required=" ">
 					  <input type="password" name="Pass" placeholder="Password" required=" ">
 					  <input type="submit" value="Login" name="login">

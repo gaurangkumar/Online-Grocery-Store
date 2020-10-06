@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<?php include "header.php"?>
+<?php include 'header.php'?>
 
 
 		<div class="w3l_banner_nav_right">

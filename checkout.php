@@ -1,24 +1,22 @@
 <?php
 $products = $cart = [];
 
-foreach($_POST as $key => $val) {
+foreach ($_POST as $key => $val) {
     $array = explode('_', $key); // discount_amount_1 => Array([0] => discount, [1] => amount, [2] => 1)
 
-    if( count($array) > 1) { // exclude keys without _
+    if (count($array) > 1) { // exclude keys without _
         $i = array_pop($array); // get and remove last member of array => Array([0] => discount, [1] => amount)
     } else {
         $i = $array[0];
     }
 
-
     $key = implode('_', $array); // Array([0] => discount, [1] => amount) => discount_amount
 
-    if(is_numeric($i)) {
+    if (is_numeric($i)) {
         $products[$i][$key] = $val;
     } else {
         $cart[$key] = $val;
     }
-    
 }
 ?>
 <!--
@@ -33,7 +31,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <title>Checkout</title>
 
 <?php
-    include "header.php"?>
+    include 'header.php'?>
 		<div class="w3l_banner_nav_right">
             <!-- about -->
             <div class="privacy about">
@@ -54,8 +52,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </thead>
                         <tbody>
                             <?php
-                            foreach($products as $i => $product) {
-                            ?>
+                            foreach ($products as $i => $product) {
+                                ?>
                             <tr class="rem<?php echo $i; ?>">
                                 <td class="invert"><?php echo $i; ?></td>
                                 <td class="invert-image">
@@ -78,9 +76,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </div>
                                 </td>
                                 <td class="invert"><span><?php echo $product['item_name']; ?></td>
-                                <td class="invert"><span><?php 
-								$s  = $product['amount'] ;
-							    ?></td>
+                                <td class="invert"><span><?php
+                                $s = $product['amount']; ?></td>
                                 <td class="invert">
                                     <div class="rem" id="<?php echo $i; ?>">
                                         <div class="close1"></div>
@@ -89,7 +86,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </td>
                             </tr>
                             <?php
-							
                             }
                             ?>
                     </tbody>
@@ -159,7 +155,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
     <!-- //banner -->
 
-<?php include "footer.php"?>
+<?php include 'footer.php'?>
 
     <!--quantity-->
     <script>
