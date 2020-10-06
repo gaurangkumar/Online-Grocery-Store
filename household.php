@@ -160,7 +160,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="clearfix"> </div>
 				</div>
 				<div class="w3ls_w3l_banner_nav_right_grid1">
-					<h6>utensils</h6>
+					<h6></h6>
 					<div class="col-md-3 w3ls_w3l_banner_left">
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">

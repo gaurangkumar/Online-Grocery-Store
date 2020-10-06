@@ -140,9 +140,39 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse " id="bs-megadropdown-tabs">
               <ul class="nav navbar-nav nav_1">
+                  <?php
+                  $result = mysqli_query($conn, "SELECT * FROM `category` WHERE `parent_id` = 0");
+                  while($category = $result->fetch_assoc()) {
+                    $result2 = mysqli_query($conn, "SELECT * FROM `category` WHERE `parent_id` = ".$category['cid']);
+                      if($result2->num_rows) {
+                          ?>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <?php echo ucwords($category['name']); ?> <span class="caret"></span>
+                    </a>
+                  <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                    <div class="w3ls_vegetables">
+                      <ul>
+                          <?php
+                          while($subcategory = $result2->fetch_assoc()) {
+                        echo '<li style="margin:5px"><a href="products?id='.$subcategory['cid'].'">'.ucwords($subcategory['name']).'</a></li>';
+                          }
+                          ?>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                          <?php
+                      } else {
+                        echo '<li><a href="products?id='.$category['cid'].'">'.ucwords($category['name']).'</a></li>';
+                      }
+                  }
+                  ?>
+<!--
                 <li><a href="household.php">Home Care</a></li>
                 <li><a href="vegetables.php">Vegetables</a></li>
                 <li><a href="shampoo.php">Personal Care</a></li>
+-->
 
                 <!--<li class="dropdown mega-dropdown active">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veggies & Fruits<span class="caret"></span></a>				
@@ -156,7 +186,11 @@
                                     </div>				
                                 </li> !-->
 
-                <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Staples<span class="caret"></span></a>
+<!--
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Staples<span class="caret"></span>
+                    </a>
                   <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
                     <div class="w3ls_vegetables">
                       <ul>
@@ -168,6 +202,7 @@
                     </div>
                   </div>
                 </li>
+-->
 
                 <!--<li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Persnal Care<span class="caret"></span></a>

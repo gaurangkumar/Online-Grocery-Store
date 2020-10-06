@@ -20,7 +20,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</div>
 			<div class="w3ls_w3l_banner_nav_right_grid w3ls_w3l_banner_nav_right_grid_sub">
             
-				<h3>Masala And Spices</h3>
+				<h3> Grocery</h3>
                     <?php include 'dbcon.php' ?>
 				<?php
                             $sql = "SELECT  name, price, discount, weight, pic, cid FROM product WHERE cid=6 ";
@@ -34,9 +34,11 @@ if ( $num > 0) {
                 
 				<div class="col-md-3 w3ls_w3l_banner_left">
 						<div class="hover14 column ">
+                        <h1></h1>
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
 							
 							<div class="agile_top_brand_left_grid1">
+                            <h1></h1>
                             
 								<figure>
 									<div class="snipcart-item block">
@@ -66,7 +68,9 @@ if ( $num > 0) {
 							</div>
 						</div>
 						</div>
+                        <div class="clearfix"> </div>
 					</div>
+                    
                       <?php           
         }}
 	  else{

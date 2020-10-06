@@ -31,7 +31,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
     <title>Checkout</title>
-<?php include "header.php"?>
+
+<?php
+    include "header.php"?>
 		<div class="w3l_banner_nav_right">
             <!-- about -->
             <div class="privacy about">
@@ -58,7 +60,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <td class="invert"><?php echo $i; ?></td>
                                 <td class="invert-image">
                                     <a href="single.php">
-                                        <img src="images/3.png" alt=" " class="img-responsive">
+                                        <img src="" alt=" " class="img-responsive">
                                     </a>
                                 </td>
                                 <td class="invert">
@@ -76,7 +78,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     </div>
                                 </td>
                                 <td class="invert"><span><?php echo $product['item_name']; ?></td>
-                                <td class="invert"><span><?php echo $product['amount']; ?></td>
+                                <td class="invert"><span><?php 
+								$s  = $product['amount'] ;
+							    ?></td>
                                 <td class="invert">
                                     <div class="rem" id="<?php echo $i; ?>">
                                         <div class="close1"></div>
@@ -85,21 +89,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </td>
                             </tr>
                             <?php
+							
                             }
                             ?>
                     </tbody>
+                    <?php  echo  $product['quantity']; ?>  
                   </table>
                 </div>
                 <div class="checkout-left">	
                     <div class="col-md-4 checkout-left-basket">
-                        <h4>Continue to basket</h4>
-                        <ul>
-                            <li>Product1 <i>-</i> <span>$15.00 </span></li>
-                            <li>Product2 <i>-</i> <span>$25.00 </span></li>
-                            <li>Product3 <i>-</i> <span>$29.00 </span></li>
-                            <li>Total Service Charges <i>-</i> <span>$15.00</span></li>
-                            <li>Total <i>-</i> <span>$84.00</span></li>
-                        </ul>
+                       
                     </div>
                     <div class="col-md-8 address_form_agile">
                           <h4>Add a new Details</h4>
