@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<?php include "header.php"?>
+<?php include 'header.php'?>
 
 
 		<div class="w3l_banner_nav_right">
@@ -22,24 +22,21 @@
 				  <div class="form">
                    <?php  include 'dbcon.php' ?>
 						<?php
-						
-						if(isset($_POST['login']))
-						{
-							$un=$_POST["User"];
-						$pw=$_POST["Pass"];
-							
-						 $sql= "UPDATE user SET password='$pw' WHERE  username='$un' ";
-						 if ($conn->query($sql) === TRUE) {
-  							echo "your password is forgot ";
-												  header("Location: login.php.php");
-        exit;
 
-							 
-						} else {
-  								echo "Error updating record: " . $conn->error;
-								}
-						}
-						?>
+                        if (isset($_POST['login'])) {
+                            $un = $_POST['User'];
+                            $pw = $_POST['Pass'];
+
+                            $sql = "UPDATE user SET password='$pw' WHERE  username='$un' ";
+                            if ($conn->query($sql) === true) {
+                                echo 'your password is forgot ';
+                                header('Location: login.php.php');
+                                exit;
+                            } else {
+                                echo 'Error updating record: '.$conn->error;
+                            }
+                        }
+                        ?>
 	
             
 			<h2>Forgot to your Password</h2>

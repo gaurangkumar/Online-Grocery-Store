@@ -10,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title>Grocery Store</title>
 <!-- for-mobile-apps -->
 <body>
-		<?php include "header.php"?>
+		<?php include 'header.php'?>
 		<div class="w3l_banner_nav_right">
 			<div class="w3l_banner_nav_right_banner5">
 				<h3>Best Deals For New Products<span class="blink_me"></span></h3>
@@ -490,6 +490,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<div class="clearfix"></div>
 	</div>
-<?php include "footer.php"?>
+<?php include 'footer.php'?>
 </body>
 </html>

@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>Grocery Store</title>
-<body><?php include "header.php"?>
+<body><?php include 'header.php'?>
 
 
 
@@ -414,6 +414,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-<?php include "footer.php"?>
+<?php include 'footer.php'?>
 </body>
 </html>
