@@ -103,20 +103,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 					</div>
 							</div>
-						</div>
-						</div>
-					</div>
-                    
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-
-			<div class="clearfix"> </div>
-		</div>
-	</div>
+            <div class="clearfix"></div>
+        </div>
+        <!-- banner -->
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
 <?php include "footer.php"?>
 </body>
 </html>

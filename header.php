@@ -172,21 +172,7 @@
                 <li><a href="household.php">Home Care</a></li>
                 <li><a href="vegetables.php">Vegetables</a></li>
                 <li><a href="shampoo.php">Personal Care</a></li>
--->
 
-                <!--<li class="dropdown mega-dropdown active">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veggies & Fruits<span class="caret"></span></a>				
-                                    <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-                                        <div class="w3ls_vegetables">
-                                            <ul>	
-                                                <li><a href="vegetables.php">Vegetables</a></li>
-                                                <li><a href="vegetables.php">Fruits</a></li>
-                                            </ul>
-                                        </div>                  
-                                    </div>				
-                                </li> !-->
-
-<!--
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         Staples<span class="caret"></span>
@@ -204,6 +190,17 @@
                 </li>
 -->
 
+                <!--<li class="dropdown mega-dropdown active">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veggies & Fruits<span class="caret"></span></a>				
+                                    <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                                        <div class="w3ls_vegetables">
+                                            <ul>	
+                                                <li><a href="vegetables.php">Vegetables</a></li>
+                                                <li><a href="vegetables.php">Fruits</a></li>
+                                            </ul>
+                                        </div>                  
+                                    </div>				
+                                </li> !-->
                 <!--<li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Persnal Care<span class="caret"></span></a>
                                     <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
