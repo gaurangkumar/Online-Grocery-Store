@@ -31,7 +31,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
     <title>Checkout</title>
-<?php include "header.php"?>
+
+<?php
+    include "header.php"?>
 		<div class="w3l_banner_nav_right">
             <!-- about -->
             <div class="privacy about">

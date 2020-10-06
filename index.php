@@ -1,3 +1,7 @@
+<?php
+require("dbcon.php");
+$result = mysqli_query($conn, "SELECT * FROM `product` LIMIT 8");
+?>
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
@@ -9,205 +13,132 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
 <title>Grocery Store </title>
 <body><?php include "header.php"?>
-		<div class="w3l_banner_nav_right">
-			<section class="slider">
-				<div class="flexslider">
-					<ul class="slides">
-						<li>
-							<div class="w3l_banner_nav_right_banner">
-								<h3>Make your <span>food</span> with Spicy.</h3>
-								<div class="more">
-									<a href="products.php" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="w3l_banner_nav_right_banner1">
-								<h3>Make your <span>food</span> with Spicy.</h3>
-								<div class="more">
-									<a href="products.php" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="w3l_banner_nav_right_banner">
-								<h3>upto <i>50%</i> off.</h3>
-								<div class="more">
-									<a href="products.php" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</section>
-			<!-- flexSlider -->
-				<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
-				<script defer src="js/jquery.flexslider.js"></script>
-				<script type="text/javascript">
-				$(window).load(function(){
-				  $('.flexslider').flexslider({
-					animation: "slide",
-					start: function(slider){
-					  $('body').removeClass('loading');
-					}
-				  });
-				});
-			  </script>
-			<!-- //flexSlider -->
-		</div>
-		<div class="clearfix"></div>
-	</div>
-<!-- banner -->
-					<div class="clearfix"> </div>
-			</div>
-			<div class="clearfix"> </div>
-	</div>
-<!-- top-brands -->
+            <div class="w3l_banner_nav_right">
+                <section class="slider">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <div class="w3l_banner_nav_right_banner">
+                                    <h3>Make your <span>food</span> with Spicy.</h3>
+                                    <div class="more">
+                                        <a href="products.php" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="w3l_banner_nav_right_banner1">
+                                    <h3>Make your <span>food</span> with Spicy.</h3>
+                                    <div class="more">
+                                        <a href="products.php" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="w3l_banner_nav_right_banner">
+                                    <h3>upto <i>50%</i> off.</h3>
+                                    <div class="more">
+                                        <a href="products.php" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <!-- flexSlider -->
+                    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
+                    <script defer src="js/jquery.flexslider.js"></script>
+                    <script type="text/javascript">
+                    $(window).load(function(){
+                      $('.flexslider').flexslider({
+                        animation: "slide",
+                        start: function(slider){
+                          $('body').removeClass('loading');
+                        }
+                      });
+                    });
+                  </script>
+                <!-- //flexSlider -->
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!-- banner -->
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+    <!-- top-brands -->
 	<div class="top-brands">
 		<div class="container">
 			<h3>Hot Offers</h3>
 			<div class="agile_top_brands_grids">
-				<div class="col-md-3 top_brand_left">
+                <?php
+                if($result->num_rows) {
+                    while($product = $result->fetch_assoc()) {
+                        $pid = $product['pid'];
+                        $name = $product['name'];
+                        $weight = trim($product['weight'], "()");
+                        $pic = $product['pic'];
+                        $price = $product['price'];
+                        $discount = $product['discount'];
+                        $discount_money = $price * ($product['discount'] / 100);
+                        $new_price = $discount == 0 
+                            ? $price 
+                            : $product['price']*(1-($product['discount'] / 100));
+                        
+                ?>
+				<div class="col-md-3 top_brand_left" style="margin-bottom:15px">
 					<div class="hover14 column">
 						<div class="agile_top_brand_left_grid">
-							<div class="tag"><img src="images/tag.png" alt=" " class="img-responsive" /></div>
+							<div class="tag">
+                                <img src="images/tag.png" alt="" class="img-responsive">
+                            </div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
 									<div class="snipcart-item block" >
 										<div class="snipcart-thumb">
-											<a href="single.php"><img title=" " alt=" " src="images/1.png" /></a>		
-											<p>fortune sunflower oil(5ltr)</p>
-											<h4<i class="fa fa-rupee"> 400.00 </i><span><i class="fa fa-rupee"><del> 450.00</del> </i></h4></h4>
+											<a href="single.php?id=<?php echo $pid; ?>">
+                                                <img title="<?php echo $name; ?>" alt="<?php echo $name; ?>" src="<?php echo $pic; ?>" width="140">
+                                            </a>		
+											<p>
+                                                <?php echo $name.($weight ? " ($weight)" : ""); ?>
+                                            </p>
+											<h4>
+                                                <i class="fa fa-rupee"></i> <?php echo $new_price; ?>
+                                                <span>
+                                                    <?php if($discount) { ?>
+                                                    <i class="fa fa-rupee"></i> <?php echo $product['price']; } ?>
+                                                </span>
+                                            </h4>
 										</div>
 										<div class="snipcart-details top_brand_home_details">
 											<form action="checkout.php" method="post">
 												<fieldset>
 													<input type="hidden" name="cmd" value="_cart" />
 													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="business" value=" " />
-													<input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
-													<input type="hidden" name="amount" value="7.99" />
-													<input type="hidden" name="discount_amount" value="1.00" />
+													<input type="hidden" name="business" value="" />
+													<input type="hidden" name="item_name" value="<?php echo $name; ?>" />
+													<input type="hidden" name="amount" value="<?php echo $price; ?>" />
+													<input type="hidden" name="discount_amount" value="<?php echo $discount_money; ?>" />
 													<input type="hidden" name="currency_code" value="INR" />
-													<input type="hidden" name="return" value=" " />
-													<input type="hidden" name="cancel_return" value=" " />
+													<input type="hidden" name="return" value="" />
+													<input type="hidden" name="cancel_return" value="" />
 													<input type="submit" name="submit" value="Add to cart" class="button" />
 												</fieldset>
 													
 											</form>
-									
 										</div>
+
 									</div>
 								</figure>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3 top_brand_left">
-					<div class="hover14 column">
-						<div class="agile_top_brand_left_grid">
-							<div class="agile_top_brand_left_grid1">
-								<figure>
-									<div class="snipcart-item block" >
-										<div class="snipcart-thumb">
-											<a href="single.php"><img title=" " alt=" " src="images/3.png" /></a>		
-											<p>basmati rice (5 Kg)</p>
-											<h4><i class="fa fa-rupee"> 350.99 </i><span><i class="fa fa-rupee"><del> 354.00</del> </i></h4>
-										</div>
-										<div class="snipcart-details top_brand_home_details">
-											<form action="#" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="business" value=" " />
-													<input type="hidden" name="item_name" value="basmati rise" />
-													<input type="hidden" name="amount" value="350.99" />
-													<input type="hidden" name="discount_amount" value="1.00" />
-													<input type="hidden" name="currency_code" value="INR" />
-													<input type="hidden" name="return" value=" " />
-													<input type="hidden" name="cancel_return" value=" " />
-													<input type="submit" name="submit" value="Add to cart" class="button" />
-												</fieldset>
-											</form>
-										</div>
-									</div>
-								</figure>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 top_brand_left">
-					<div class="hover14 column">
-						<div class="agile_top_brand_left_grid">
-							<div class="agile_top_brand_left_grid_pos">
-								<img src="images/offer.png" alt=" " class="img-responsive" />
-							</div>
-							<div class="agile_top_brand_left_grid1">
-								<figure>
-									<div class="snipcart-item block">
-										<div class="snipcart-thumb">
-											<a href="single.php"><img src="images/poteto.jpg" alt=" " class="img-responsive" /></a>
-											<p>poteto(1kg)</p>
-											<h4><i class="fa fa-rupee"> 39.00 </i><span><i class="fa fa-rupee"><del> 40.00</del> </i></h4>
-										</div>
-										<div class="snipcart-details top_brand_home_details">
-											<form action="#" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="business" value=" " />
-													<input type="hidden" name="item_name" value="Pepsi soft drink" />
-													<input type="hidden" name="amount" value="40.00" />
-													<input type="hidden" name="discount_amount" value="1.00" />
-													<input type="hidden" name="currency_code" value="INR" />
-													<input type="hidden" name="return" value=" " />
-													<input type="hidden" name="cancel_return" value=" " />
-													<input type="submit" name="submit" value="Add to cart" class="button" />
-												</fieldset>
-											</form>
-										</div>
-									</div>
-								</figure>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 top_brand_left">
-					<div class="hover14 column">
-						<div class="agile_top_brand_left_grid">
-							<div class="agile_top_brand_left_grid_pos">
-								<img src="images/offer.png" alt=" " class="img-responsive" />
-							</div>
-							<div class="agile_top_brand_left_grid1">
-								<figure>
-									<div class="snipcart-item block">
-										<div class="snipcart-thumb">
-											<a href="single.php"><img src="images/c1.png" alt=" " class="img-responsive" /></a>
-											<p>Colgate(200gm)</p>
-											<h4><i class="fa fa-rupee"> 50.00 </i><span><i class="fa fa-rupee"><del> 54.00</del> </i></h4>
-										</div>
-										<div class="snipcart-details top_brand_home_details">
-											<form action="#" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="business" value=" " />
-													<input type="hidden" name="item_name" value="dogs food" />
-													<input type="hidden" name="amount" value="9.00" />
-													<input type="hidden" name="discount_amount" value="1.00" />
-													<input type="hidden" name="currency_code" value="INR" />
-													<input type="hidden" name="return" value=" " />
-													<input type="hidden" name="cancel_return" value=" " />
-													<input type="submit" name="submit" value="Add to cart" class="button" />
-												</fieldset>
-											</form>
-										</div>
-									</div>
-								</figure>
-							</div>
-						</div>
-					</div>
-				</div>
+                <?php
+                    }
+                }
+                ?>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
