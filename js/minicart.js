@@ -1903,7 +1903,7 @@ var defaults = module.exports = {
 
     parent: (typeof document !== 'undefined') ? document.body : null,
 
-    action:  'checkout.php',
+    action:  'http://localhost/project5/grocery_store-web_Free20-07-2017_336905076/web/checkout.php',
 
     target: '',
 
