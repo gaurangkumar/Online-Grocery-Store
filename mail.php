@@ -16,7 +16,7 @@ require('header.php');
 <?php
  
 if(isset($_POST['submit'])) {
-echo "p" ;
+
     $n = $_POST['Name'];
     $m = $_POST['Mobile'];
    
