@@ -13,7 +13,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 require('dbcon.php');
 require('header.php');
 ?>
+<?php
+ 
+if(isset($_POST['submit'])) {
+echo "p" ;
+    $n = $_POST['Name'];
+    $m = $_POST['Mobile'];
+   
+    $p = $_POST['msg'];
+    echo "$p" ;
+    $sql = "INSERT INTO feedback(name,mobile,msg)VALUES('$n', '$m' ,'$p')";
 
+    if ($conn->query($sql) === true) {
+        echo "record save ";
+    } else {
+        echo 'Error: '.$sql.'<br>'.$conn->error;
+    }
+}
+?>
 		<div class="w3l_banner_nav_right">
 <!-- mail -->
 		<div class="mail">
@@ -26,7 +43,7 @@ require('header.php');
 					</ul>
 					<ul>
 						<li><i class="fa fa-envelope" aria-hidden="true"></i></li>
-						<li>email<span><a href="mailto:info@example.com">info@example.com</a></span></li>
+						<li>email<span><a href="mailto:info@example.com">himaniaasoda1999@gmail.com</a></span></li>
 					</ul>
 					<ul>
 						<li><i class="fa fa-phone" aria-hidden="true"></i></li>
@@ -37,15 +54,14 @@ require('header.php');
 					<form action="#" method="post">
 						<div class="col-md-6 wthree_contact_left_grid">
 							<input type="text" name="Name" value="Name*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name*';}" required="">
-							<input type="email" name="Email" value="Email*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email*';}" required="">
+							
 						</div>
 						<div class="col-md-6 wthree_contact_left_grid">
-							<input type="text" name="Telephone" value="Telephone*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telephone*';}" required="">
-							<input type="text" name="Subject" value="Subject*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject*';}" required="">
-						</div>
+							<input type="text" name="Mobile" value="Mobile" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telephone*';}" required="">
+													</div>
 						<div class="clearfix"> </div>
-						<textarea  name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required>Message...</textarea>
-						<input type="submit" value="Submit">
+						<textarea  name="msg" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required>Message...</textarea>
+						<input type="submit"  name"submit" value="Submit">
 						<input type="reset" value="Clear">
 					</form>
 				</div>
