@@ -129,10 +129,17 @@
 	</script>
     <!-- //here ends scrolling icon -->
 
-    <script src="js/minicart.js?a=3"></script>
+    <script src="js/minicart.js?a=<?php echo time(); ?>"></script>
     <script>
             paypal.minicart.render();
 
+            paypal.minicart.cart.on('add', function (idx, product, isExisting) {
+var txt = "";
+                for (i in product) {
+                    txt += product[i] + " ";
+                };
+                alert(txt);
+            });
             paypal.minicart.cart.on('checkout', function (evt) {
                 var items = this.items(),
                     len = items.length,
@@ -144,8 +151,8 @@
                     total += items[i].get('quantity');
                 }
 
-                if (total < 3) {
-                    alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                if (total < 1) {
+                    alert('The minimum order quantity is 1. Please add something to your shopping cart before checking out');
                     evt.preventDefault();
                 }
             });

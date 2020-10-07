@@ -1,15 +1,6 @@
-<!--
-author: W3layouts
-author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-
-
-<?php  include 'dbcon.php' ?>
-						
-	
-            <?php
+<?php
+include 'dbcon.php';
+$msg = '';
 
 if (isset($_POST['submit'])) {
     $n = $_POST['Name'];
@@ -30,35 +21,32 @@ if (isset($_POST['submit'])) {
         echo 'Error: '.$sql.'<br>'.$conn->error;
     }
 }
- ?><?php
 
-       if (isset($_POST['login'])) {
-           $un = $_POST['User'];
-           $pw = $_POST['Pass'];
-           $msg = '';
-           $sql = "SELECT  username,password FROM user WHERE username='$un' AND  password='$pw'  ";
-           $result = mysqli_query($conn, $sql);
-           $num = mysqli_num_rows($result);
-           $row = mysqli_fetch_array($result);
-
-           if ($row['username'] != $un && $row['password'] != $pw) {
-               if ($row['password'] != $pw) {
-                   $msg = 'Wrong Password';
-               } else {
-                   $msg = 'Wrong Username';
-               }
-           } else {
-               header('Location: index.php');
-               exit;
-           }
-       }
-
-            ?>
-			
-		
-
-		
-			
+if (isset($_POST['login'])) {
+    $un = $_POST['User'];
+    $pw = $_POST['Pass'];
+    $sql = "SELECT  username,password FROM user WHERE username='$un'";
+    $result = $conn->query($sql);
+    if($result->num_rows) {
+        $row = $result->fetch_array();
+        if ($row['password'] != $pw) {
+            $msg = 'Wrong Password';
+        }
+        else {
+            header('Location: index.php');
+            exit;
+        }
+    } else {
+        $msg = 'Wrong Username';
+    }
+}
+?>
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,10 +66,8 @@ if (isset($_POST['submit'])) {
 				  <div class="form">
                    
        			<h2>Login to your account</h2>
-               
+                       <span class="text-danger"><?php echo $msg; ?></span>
 					<form action="" method="post">
-                     <?php
-                     echo "$msg"; ?>
 					  <input type="text" name="User" placeholder="Username" required=" ">
 					  <input type="password" name="Pass" placeholder="Password" required=" ">
 					  <input type="submit" value="Login" name="login">
@@ -91,6 +77,7 @@ if (isset($_POST['submit'])) {
                        
 				  <div class="form">
 					<h2>Create an account</h2>
+                       <span class="text-danger"><?php echo $msg; ?></span>
 					<form action="#" method="post">
 					  <input type="text" name="Name" placeholder="name" required=" "   title="must be enter name">
 					  <input type="password" name="Mobile" placeholder="Mobile No" required=" " pattern="[0-9]{10}" title="must be 10 charecter">

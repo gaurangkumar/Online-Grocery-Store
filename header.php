@@ -141,8 +141,8 @@
             <div class="collapse navbar-collapse " id="bs-megadropdown-tabs">
               <ul class="nav navbar-nav nav_1">
                   <?php
-                  $result = mysqli_query($conn, 'SELECT * FROM `category` WHERE `parent_id` = 0');
-                  while ($category = $result->fetch_assoc()) {
+                  $result1 = mysqli_query($conn, 'SELECT * FROM `category` WHERE `parent_id` = 0');
+                  while ($category = $result1->fetch_assoc()) {
                       $result2 = mysqli_query($conn, 'SELECT * FROM `category` WHERE `parent_id` = '.$category['cid']);
                       if ($result2->num_rows) {
                           ?>
