@@ -8,7 +8,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>Grocery Store</title>
-<body><?php include 'header.php'?>
+<body>
+<?php
+require('dbcon.php');
+require('header.php');
+?>
 
 		<div class="w3l_banner_nav_right">
 <!-- mail -->

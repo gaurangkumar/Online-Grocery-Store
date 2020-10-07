@@ -155,7 +155,7 @@
                       <ul>
                           <?php
                           while ($subcategory = $result2->fetch_assoc()) {
-                              echo '<li style="margin:5px"><a href="products?id='.$subcategory['cid'].'">'.ucwords($subcategory['name']).'</a></li>';
+                              echo '<li style="margin:5px"><a href="products.php?id='.$subcategory['cid'].'">'.ucwords($subcategory['name']).'</a></li>';
                           } ?>
                       </ul>
                     </div>
@@ -163,7 +163,7 @@
                 </li>
                           <?php
                       } else {
-                          echo '<li><a href="products?id='.$category['cid'].'">'.ucwords($category['name']).'</a></li>';
+                          echo '<li><a href="products.php?id='.$category['cid'].'">'.ucwords($category['name']).'</a></li>';
                       }
                   }
                   ?>

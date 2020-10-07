@@ -134,11 +134,11 @@
             paypal.minicart.render();
 
             paypal.minicart.cart.on('add', function (idx, product, isExisting) {
-var txt = "";
+				/*var txt = "";
                 for (i in product) {
                     txt += product[i] + " ";
                 };
-                alert(txt);
+                alert(txt);*/
             });
             paypal.minicart.cart.on('checkout', function (evt) {
                 var items = this.items(),
