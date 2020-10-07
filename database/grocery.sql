@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2020 at 09:50 PM
+-- Generation Time: Oct 07, 2020 at 02:34 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `grocery`
 --
+CREATE DATABASE IF NOT EXISTS `grocery` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `grocery`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
+DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `aid` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -47,6 +50,7 @@ INSERT INTO `admin` (`aid`, `name`, `emailid`, `password`) VALUES
 -- Table structure for table `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `cid` int(10) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
@@ -73,6 +77,7 @@ INSERT INTO `category` (`cid`, `name`, `parent_id`) VALUES
 -- Table structure for table `ord`
 --
 
+DROP TABLE IF EXISTS `ord`;
 CREATE TABLE `ord` (
   `oid` int(10) NOT NULL,
   `pid` int(10) DEFAULT NULL,
@@ -87,6 +92,7 @@ CREATE TABLE `ord` (
 -- Table structure for table `payment`
 --
 
+DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
   `payid` int(10) NOT NULL,
   `total amount` int(20) DEFAULT NULL,
@@ -101,6 +107,7 @@ CREATE TABLE `payment` (
 -- Table structure for table `product`
 --
 
+DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `pid` int(10) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
@@ -143,6 +150,7 @@ INSERT INTO `product` (`pid`, `name`, `price`, `discount`, `weight`, `pic`, `cid
 -- Table structure for table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `uid` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
