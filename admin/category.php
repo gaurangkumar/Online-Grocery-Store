@@ -6,7 +6,7 @@ if (!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
 }
 require 'include/dbcon.php';
 
-$result = $conn->query('SELECT * FROM `product` ORDER BY `pid` DESC');
+$result = $conn->query('SELECT * FROM `category` ORDER BY `cid` DESC');
 $total_product = $result->num_rows;
 ?>
 <!DOCTYPE html>
@@ -130,7 +130,7 @@ $total_product = $result->num_rows;
         </div>
         <!-- /.container-fluid -->
 
-      </div>
+         </div>
       <!-- End of Main Content -->
 
       <!-- Footer -->
