@@ -1,27 +1,27 @@
 <?php
 session_start();
-if (!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
-    header('Location: login.php');
+if(!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
+    header("Location: login.php");
     exit;
 }
-require 'include/dbcon.php';
+require("include/dbcon.php");
 
-$result = $conn->query('SELECT `cid` FROM `category`');
+$result = $conn->query("SELECT `cid` FROM `category`");
 $category = $result->num_rows;
 
-$result = $conn->query('SELECT `pid` FROM `product`');
+$result = $conn->query("SELECT `pid` FROM `product`");
 $product = $result->num_rows;
 
-$result = $conn->query('SELECT `uid` FROM `user`');
+$result = $conn->query("SELECT `uid` FROM `user`");
 $user = $result->num_rows;
 
-$result = $conn->query('SELECT `fid` FROM `feedback`');
+$result = $conn->query("SELECT `fid` FROM `feedback`");
 $feedback = $result->num_rows;
 
-$result = $conn->query('SELECT `oid` FROM `ord`');
+$result = $conn->query("SELECT `oid` FROM `ord`");
 $ord = $result->num_rows;
 
-$result = $conn->query('SELECT `payid` FROM `payment');
+$result = $conn->query("SELECT `payid` FROM `payment");
 $payment = $result->num_rows;
 ?>
 <!DOCTYPE html>
@@ -29,8 +29,8 @@ $payment = $result->num_rows;
 
 <head>
 <?php
-    $title = 'Dashboard | Admin';
-    require 'include/head.php';
+	$title = "Dashboard | Admin";
+	require("include/head.php");
 ?>
 </head>
 
@@ -41,7 +41,7 @@ $payment = $result->num_rows;
 
     <!-- Sidebar -->
 <?php
-    require 'include/sidebar.php';
+    require("include/sidebar.php");
 ?>
     <!-- End of Sidebar -->
 
@@ -53,7 +53,7 @@ $payment = $result->num_rows;
 
         <!-- Topbar -->
 <?php
-    require 'include/topbar.php';
+    require("include/topbar.php");
 ?>
         <!-- End of Topbar -->
 
@@ -212,7 +212,7 @@ $payment = $result->num_rows;
   </div>
 
 <?php
-    require 'include/javascript.php';
+    require("include/javascript.php");
 ?>
 
   <!-- Page level custom scripts -->
