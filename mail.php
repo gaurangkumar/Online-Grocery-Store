@@ -10,23 +10,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title>Grocery Store</title>
 <body>
 <?php
-require 'dbcon.php';
-require 'header.php';
+require('dbcon.php');
+require('header.php');
 ?>
 <?php
+$msg = "";
+if(isset($_POST['Name']) && isset($_POST['Mobile']) && isset($_POST['msg'])) {
 
-if (isset($_POST['submit'])) {
     $n = $_POST['Name'];
     $m = $_POST['Mobile'];
-
     $p = $_POST['msg'];
+    $sql = "INSERT INTO feedback (`name`, `mobile`, `msg`) VALUES ('$n', '$m' ,'$p')";
 
-    $sql = "INSERT INTO feedback(name,mobile,msg)VALUES('$n', '$m' ,'$p')";
-
-    if ($conn->query($sql) === true) {
-        echo "save  your response.$p.";
+    if ( $conn->query($sql)) {
+        $msg = "Feedback Saved";
     } else {
-        echo 'Error: '.$sql.'<br>'.$conn->error;
+        $msg = "Error: ".$conn->error;
     }
 }
 ?>
@@ -50,17 +49,20 @@ if (isset($_POST['submit'])) {
 					</ul>
 				</div>
 				<div class="col-md-8 agileinfo_mail_grid_right">
-					<form action="#" method="post">
+					<form action="" method="post">
+                        <div><?php echo $msg; ?></div>
+                        
 						<div class="col-md-6 wthree_contact_left_grid">
 							<input type="text" name="Name" value="Name*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name*';}" required="">
 							
 						</div>
 						<div class="col-md-6 wthree_contact_left_grid">
 							<input type="text" name="Mobile" value="Mobile" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telephone*';}" required="">
-													</div>
+                        </div>
 						<div class="clearfix"> </div>
 						<textarea  name="msg" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required>Message...</textarea>
-						<input type="submit"  name="submit" value="Submit">
+
+                        <input type="submit"  name="submit" value="Submit">
 						<input type="reset" value="Clear">
 					</form>
 				</div>
