@@ -1,6 +1,6 @@
 <?php
 $products = $cart = [];
-var_dump($_POST);exit;
+var_dump($_POST); exit;
 foreach ($_POST as $key => $val) {
     $array = explode('_', $key); // discount_amount_1 => Array([0] => discount, [1] => amount, [2] => 1)
 
