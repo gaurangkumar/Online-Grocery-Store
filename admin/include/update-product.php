@@ -1,11 +1,10 @@
 <?php
-
 session_start();
 if (!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
     header('Location: login.php');
     exit;
 }
-require 'dbcon.php';
+require '../../dbcon.php';
 
 if (empty($_POST['pid']) ||
    empty($_POST['name']) ||

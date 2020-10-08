@@ -4,7 +4,8 @@ if (!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
     header('Location: login.php');
     exit;
 }
-require 'include/dbcon.php';
+
+require '../dbcon.php';
 
 $result = $conn->query('SELECT * FROM `category` ORDER BY `cid` DESC');
 $total_product = $result->num_rows;
