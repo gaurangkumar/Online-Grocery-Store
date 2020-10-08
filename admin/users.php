@@ -7,15 +7,15 @@ if (!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
 
 require '../dbcon.php';
 
-$result = $conn->query('SELECT * FROM `category` ORDER BY `cid` DESC');
-$total_category = $result->num_rows;
+$result = $conn->query('SELECT * FROM `user` ORDER BY `uid` DESC');
+$total_user = $result->num_rows;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <?php
-    $title = 'All Category | Admin';
+    $title = 'All User | Admin';
     require 'include/head.php';
 ?>
 </head>
@@ -48,8 +48,8 @@ $total_category = $result->num_rows;
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">All Category (<?=$total_category?>)</h1>
-            <a href="category-add.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <h1 class="h3 mb-0 text-gray-800">All user (<?=$total_user?>)</h1>
+            <a href="include/category-add.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             	<i class="fa fa-plus-circle"></i> Create New
             </a>
           </div>
@@ -82,30 +82,30 @@ $total_category = $result->num_rows;
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>cid</th>
+                                            <th>uid</th>
                                             <th>Name</th>
-                                            <th>Parent</th>
+                                            <th>Mobile</th>
+                                            <th>Address</th>
+                                            <th>Gender</th>
+                                            <th>UserName</th>
+                                            <th>Password</th>
                                             <th class="text-nowrap">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        if ($total_category) {
+                                        if ($total_user) {
                                             while ($row = $result->fetch_assoc()) {
-                                                $result1 = $conn->query("SELECT `name` FROM `category` WHERE `cid` = $row[parent_id]");
-                                                $category = $result1->fetch_assoc(); ?>
+                                                 ?>
                                         <tr>
-                                            <td><?=$row['cid']?></td>
+                                            <td><?=$row['uid']?></td>
                                             <td><?=$row['name']?></td>
-                                            <td><?=$category['name']?></td>
-                                            <td class="text-nowrap">
-                                                <a href="category-edit.php?id=<?=$row['cid']?>" class="btn btn-outline-info">
-                                                	<i class="fa fa-close text-info"></i> Edit
-                                                </a>
-                                                <a href="include/category-delete.php?id=<?=$row['cid']?>" class="btn btn-outline-danger">
-                                                	<i class="fa fa-close text-danger"></i> Remove
-                                                </a>
-                                            </td>
+                                            <td><?=$row['mobile']?></td>
+                                            <td><?=$row['address1']?></td>
+                                            <td><?=$row['gender']?></td>
+                                            <td><?=$row['username']?></td>
+                                            <td><?=$row['password']?></td>
+                                            
                                         </tr>
 										<?php
                                             }
@@ -152,8 +152,8 @@ $total_category = $result->num_rows;
 ?>
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="include/js/demo/chart-area-demo.js"></script>
+  <script src="include/js/demo/chart-pie-demo.js"></script>
 
 </body>
 
