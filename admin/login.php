@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(isset($_SESSION['ADMIN_ID']) && !empty($_SESSION['ADMIN_ID'])) {
-    header("Location: index.php");
+if (isset($_SESSION['ADMIN_ID']) && !empty($_SESSION['ADMIN_ID'])) {
+    header('Location: index.php');
     exit;
 }
 
@@ -50,16 +50,16 @@ if(isset($_SESSION['ADMIN_ID']) && !empty($_SESSION['ADMIN_ID'])) {
                   <form class="user" method="post" action="include/check.php"> 
                     <div class="form-group m-t-40">
                         <?php
-                        if(!isset($_SESSION["msg"]) || $_SESSION["msg"] == "") {}
-						else{
-                        ?>
-				        <div class="alert alert-<?=$_SESSION["msg"]["type"]?> alert-dismissable">
+                        if (!isset($_SESSION['msg']) || $_SESSION['msg'] == '') {
+                        } else {
+                            ?>
+				        <div class="alert alert-<?=$_SESSION['msg']['type']?> alert-dismissable">
 					        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					        <?=$_SESSION["msg"]["msg"]?>
+					        <?=$_SESSION['msg']['msg']?>
 				        </div>
                         <?php
-                            $_SESSION["msg"]="";
-                            unset($_SESSION["msg"]);
+                            $_SESSION['msg'] = '';
+                            unset($_SESSION['msg']);
                         }
                         ?>
                     </div>
