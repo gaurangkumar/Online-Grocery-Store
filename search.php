@@ -9,8 +9,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
 <title>Grocery Store</title>
 <body>
-</body><?php require 'dbcon.php';
-require 'header.php';
+</body><?php require('dbcon.php');
+require('header.php');
 ?>
 
 	<div class="agile_top_brand_left_grid1">
@@ -26,16 +26,17 @@ require 'header.php';
 				<h3>Search product </h3>
                     <?php include 'dbcon.php' ?>
 				<?php
-                          if (isset($_POST['submit'])) {
-                              $p = $_POST['Product'];
-                              $sql = "SELECT  name, price, discount, weight, pic FROM product WHERE name='$p'   ";
-                              $result = mysqli_query($conn, $sql);
-                              $num = mysqli_num_rows($result);
+				          if(isset($_POST['submit']))
+						  {
+							  $p=$_POST['Product'];
+                            $sql = "SELECT  name, price, discount, weight, pic FROM product WHERE name='$p'   ";
+$result = mysqli_query($conn,$sql);
+$num = mysqli_num_rows($result);
 
-                              if ($num > 0) {
-                                  // output data of each row
-                                  while ($row = mysqli_fetch_array($result)) {
-                                      ?>
+if ( $num > 0) {
+  // output data of each row
+  while($row = mysqli_fetch_array($result)) {
+	  ?>
                 
 				<div class="col-md-3 w3ls_w3l_banner_left">
 						<div class="hover14 column ">
@@ -48,9 +49,9 @@ require 'header.php';
 								<figure>
 									<div class="snipcart-item block">
 										<div class="snipcart-thumb">
-											<a href="#"><img src="<?php echo $row['pic']; ?>" alt=" " class="img-responsive" height="140px" width="140px" /></a>
-											<p><?php echo $row['name'].$row['weight']; ?></p>
-											<h4><i class="fa fa-rupee"> <?php echo $row['price']; ?> </i><span><i class="fa fa-rupee"><del> <?php echo $row['discount']; ?></del> </i></h4>
+											<a href="#"><img src="<?php echo $row['pic'];?>" alt=" " class="img-responsive" height="140px" width="140px" /></a>
+											<p><?php echo $row['name'].$row['weight'];?></p>
+											<h4><i class="fa fa-rupee"> <?php echo $row['price'];?> </i><span><i class="fa fa-rupee"><del> <?php echo $row['discount'];?></del> </i></h4>
 										</div>
 										<div class="snipcart-details">
 											<form action="#" method="post">
@@ -58,8 +59,8 @@ require 'header.php';
 													<input type="hidden" name="cmd" value="_cart" />
 													<input type="hidden" name="add" value="1" />
 													<input type="hidden" name="business" value=" " />
-													<input type="hidden" name="item_name" value="<?php echo $row['name']; ?>" />
-													<input type="hidden" name="amount" value="<?php echo $row['price']; ?>" />
+													<input type="hidden" name="item_name" value="<?php echo $row['name'];?>" />
+													<input type="hidden" name="amount" value="<?php echo $row['price'];?>" />
 													<input type="hidden" name="discount_amount" value="1.00" />
 													<input type="hidden" name="currency_code" value="INR" />
 													<input type="hidden" name="return" value=" " />
@@ -76,14 +77,14 @@ require 'header.php';
                         <div class="clearfix"> </div>
 					</div>
                     
-                      <?php
-                                  }
-                              } else {
-                                  echo ' no row';
-                              }
-                          }
+                      <?php           
+        }}
+	  else{
+      echo " no row";
+    }
+	}
 
-      ?>
+	  ?>
   </div>
   </div>
   </div> 
