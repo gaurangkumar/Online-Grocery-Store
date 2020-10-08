@@ -1,18 +1,18 @@
 <?php
 session_start();
-if (!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
-    header('Location: login.php');
+if(!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
+    header("Location: login.php");
     exit;
 }
-require 'include/dbcon.php';
-if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header('Location: products.php');
+require("include/dbcon.php");
+if(!isset($_GET['id']) || empty($_GET['id'])) {
+    header("Location: products.php");
     exit;
 }
 $pid = (int) $_GET['id'];
 $result = $conn->query("SELECT * FROM `product` WHERE `pid` = $pid");
-if (!$result->num_rows) {
-    header('Location: products.php');
+if(!$result->num_rows) {
+    header("Location: products.php");
     exit;
 }
 $product = $result->fetch_assoc();
@@ -22,8 +22,8 @@ $product = $result->fetch_assoc();
 
 <head>
 <?php
-    $title = 'Edit Product | Admin';
-    require 'include/head.php';
+	$title = "Edit Product | Admin";
+	require("include/head.php");
 ?>
 </head>
 
@@ -34,7 +34,7 @@ $product = $result->fetch_assoc();
 
     <!-- Sidebar -->
 <?php
-    require 'include/sidebar.php';
+    require("include/sidebar.php");
 ?>
     <!-- End of Sidebar -->
 
@@ -46,7 +46,7 @@ $product = $result->fetch_assoc();
 
         <!-- Topbar -->
 <?php
-    require 'include/topbar.php';
+    require("include/topbar.php");
 ?>
         <!-- End of Topbar -->
 
@@ -65,16 +65,16 @@ $product = $result->fetch_assoc();
                 <form action="include/update-product.php" method="post" enctype="multipart/form-data">
                     <div class="form-group m-t-40">
                         <?php
-                        if (!isset($_SESSION['msg']) || $_SESSION['msg'] == '') {
-                        } else {
-                            ?>
-				        <div class="alert alert-<?=$_SESSION['msg']['type']?> alert-dismissable">
+                        if(!isset($_SESSION["msg"]) || $_SESSION["msg"] == "") {}
+						else{
+                        ?>
+				        <div class="alert alert-<?=$_SESSION["msg"]["type"]?> alert-dismissable">
 					        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					        <?=$_SESSION['msg']['msg']?>
+					        <?=$_SESSION["msg"]["msg"]?>
 				        </div>
                         <?php
-                            $_SESSION['msg'] = '';
-                            unset($_SESSION['msg']);
+                            $_SESSION["msg"]="";
+                            unset($_SESSION["msg"]);
                         }
                         ?>
                     </div>
@@ -109,13 +109,13 @@ $product = $result->fetch_assoc();
                         <label for="cid">Select Category</label>
                         <select class="form-control" id="cid" name="cid">
                         	<?php
-                            $result = $conn->query('SELECT * FROM `category`');
-                            if ($result->num_rows) {
-                                while ($row = $result->fetch_array()) {
-                                    echo '<option value="'.$row['cid'].'" '.($product['cid'] == $row['cid'] ? 'selected' : '').'>'.ucwords($row['name']).'</option>';
-                                }
-                            }
-                            ?>
+							$result = $conn->query("SELECT * FROM `category`");
+							if($result->num_rows) {
+								while($row = $result->fetch_array()) {
+                            		echo '<option value="'.$row['cid'].'" '.($product['cid']==$row['cid']?'selected':'').'>'.ucwords($row['name']).'</option>';
+								}
+							}
+							?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -172,7 +172,7 @@ $product = $result->fetch_assoc();
   </div>
 
 <?php
-    require 'include/javascript.php';
+    require("include/javascript.php");
 ?>
 
   <!-- Page level custom scripts -->

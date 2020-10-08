@@ -1,12 +1,12 @@
 <?php
 session_start();
-if (!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
-    header('Location: login.php');
+if(!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
+    header("Location: login.php");
     exit;
 }
-require 'include/dbcon.php';
+require("include/dbcon.php");
 
-$result = $conn->query('SELECT * FROM `product` ORDER BY `pid` DESC');
+$result = $conn->query("SELECT * FROM `product` ORDER BY `pid` DESC");
 $total_product = $result->num_rows;
 ?>
 <!DOCTYPE html>
@@ -14,8 +14,8 @@ $total_product = $result->num_rows;
 
 <head>
 <?php
-    $title = 'All Products | Admin';
-    require 'include/head.php';
+	$title = "All Products | Admin";
+	require("include/head.php");
 ?>
 </head>
 
@@ -26,7 +26,7 @@ $total_product = $result->num_rows;
 
     <!-- Sidebar -->
 <?php
-    require 'include/sidebar.php';
+    require("include/sidebar.php");
 ?>
     <!-- End of Sidebar -->
 
@@ -38,7 +38,7 @@ $total_product = $result->num_rows;
 
         <!-- Topbar -->
 <?php
-    require 'include/topbar.php';
+    require("include/topbar.php");
 ?>
         <!-- End of Topbar -->
 
@@ -59,16 +59,16 @@ $total_product = $result->num_rows;
                 <div class="col-12">
                     <div class="form-group m-t-40">
                         <?php
-                        if (!isset($_SESSION['msg']) || $_SESSION['msg'] == '') {
-                        } else {
-                            ?>
-				        <div class="alert alert-<?=$_SESSION['msg']['type']?> alert-dismissable">
+                        if(!isset($_SESSION["msg"]) || $_SESSION["msg"] == "") {}
+						else{
+                        ?>
+				        <div class="alert alert-<?=$_SESSION["msg"]["type"]?> alert-dismissable">
 					        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					        <?=$_SESSION['msg']['msg']?>
+					        <?=$_SESSION["msg"]["msg"]?>
 				        </div>
                         <?php
-                            $_SESSION['msg'] = '';
-                            unset($_SESSION['msg']);
+                            $_SESSION["msg"]="";
+                            unset($_SESSION["msg"]);
                         }
                         ?>
                     </div>
@@ -93,10 +93,11 @@ $total_product = $result->num_rows;
                                     </thead>
                                     <tbody>
                                         <?php
-                                        if ($total_product) {
-                                            while ($row = $result->fetch_assoc()) {
-                                                $result1 = $conn->query("SELECT `name` FROM `category` WHERE `cid` = $row[cid]");
-                                                $category = $result1->fetch_assoc(); ?>
+										if ($total_product) {
+											while ($row = $result->fetch_assoc()) {
+												$result1 = $conn->query("SELECT `name` FROM `category` WHERE `cid` = $row[cid]");
+												$category = $result1->fetch_assoc();
+										?>
                                         <tr>
                                             <td><?=$row['pid']?></td>
                                             <td><?=$row['name']?></td>
@@ -174,7 +175,7 @@ $total_product = $result->num_rows;
   </div>
 
 <?php
-    require 'include/javascript.php';
+    require("include/javascript.php");
 ?>
 
   <!-- Page level custom scripts -->
