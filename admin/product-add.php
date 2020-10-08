@@ -1,18 +1,18 @@
 <?php
 session_start();
-if(!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
-    header("Location: login.php");
+if (!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
+    header('Location: login.php');
     exit;
 }
-require("include/dbcon.php");
+require 'include/dbcon.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <?php
-	$title = "Add Product | Admin";
-	require("include/head.php");
+    $title = 'Add Product | Admin';
+    require 'include/head.php';
 ?>
 </head>
 
@@ -23,7 +23,7 @@ require("include/dbcon.php");
 
     <!-- Sidebar -->
 <?php
-    require("include/sidebar.php");
+    require 'include/sidebar.php';
 ?>
     <!-- End of Sidebar -->
 
@@ -35,7 +35,7 @@ require("include/dbcon.php");
 
         <!-- Topbar -->
 <?php
-    require("include/topbar.php");
+    require 'include/topbar.php';
 ?>
         <!-- End of Topbar -->
 
@@ -54,16 +54,16 @@ require("include/dbcon.php");
                 <form action="include/save-product.php" method="post" enctype="multipart/form-data">
                     <div class="form-group m-t-40">
                         <?php
-                        if(!isset($_SESSION["msg"]) || $_SESSION["msg"] == "") {}
-						else{
-                        ?>
-				        <div class="alert alert-<?=$_SESSION["msg"]["type"]?> alert-dismissable">
+                        if (!isset($_SESSION['msg']) || $_SESSION['msg'] == '') {
+                        } else {
+                            ?>
+				        <div class="alert alert-<?=$_SESSION['msg']['type']?> alert-dismissable">
 					        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					        <?=$_SESSION["msg"]["msg"]?>
+					        <?=$_SESSION['msg']['msg']?>
 				        </div>
                         <?php
-                            $_SESSION["msg"]="";
-                            unset($_SESSION["msg"]);
+                            $_SESSION['msg'] = '';
+                            unset($_SESSION['msg']);
                         }
                         ?>
                     </div>
@@ -91,13 +91,13 @@ require("include/dbcon.php");
                         <label for="cid">Select Category</label>
                         <select class="form-control" id="cid" name="cid">
                         	<?php
-							$result = $conn->query("SELECT * FROM `category`");
-							if($result->num_rows) {
-								while($row = $result->fetch_array()) {
-                            		echo '<option value="'.$row['cid'].'">'.ucwords($row['name']).'</option>';
-								}
-							}
-							?>
+                            $result = $conn->query('SELECT * FROM `category`');
+                            if ($result->num_rows) {
+                                while ($row = $result->fetch_array()) {
+                                    echo '<option value="'.$row['cid'].'">'.ucwords($row['name']).'</option>';
+                                }
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="form-group">
@@ -154,7 +154,7 @@ require("include/dbcon.php");
   </div>
 
 <?php
-    require("include/javascript.php");
+    require 'include/javascript.php';
 ?>
 
   <!-- Page level custom scripts -->

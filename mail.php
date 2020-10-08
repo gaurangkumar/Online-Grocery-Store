@@ -10,22 +10,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title>Grocery Store</title>
 <body>
 <?php
-require('dbcon.php');
-require('header.php');
+require 'dbcon.php';
+require 'header.php';
 ?>
 <?php
-$msg = "";
-if(isset($_POST['Name']) && isset($_POST['Mobile']) && isset($_POST['msg'])) {
-
+$msg = '';
+if (isset($_POST['Name']) && isset($_POST['Mobile']) && isset($_POST['msg'])) {
     $n = $_POST['Name'];
     $m = $_POST['Mobile'];
     $p = $_POST['msg'];
     $sql = "INSERT INTO feedback (`name`, `mobile`, `msg`) VALUES ('$n', '$m' ,'$p')";
 
-    if ( $conn->query($sql)) {
-        $msg = "Feedback Saved";
+    if ($conn->query($sql)) {
+        $msg = 'Feedback Saved';
     } else {
-        $msg = "Error: ".$conn->error;
+        $msg = 'Error: '.$conn->error;
     }
 }
 ?>
