@@ -74,8 +74,8 @@ if ($num > 0) {
                       <?php
     }
 } else {
-    echo ' no row';
-}
+          echo ' no row';
+      }
 
       ?>
   </div>

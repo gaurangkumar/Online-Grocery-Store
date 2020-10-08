@@ -27,11 +27,12 @@ if (isset($_POST['login'])) {
     $pw = $_POST['Pass'];
     $sql = "SELECT  username,password FROM user WHERE username='$un'";
     $result = $conn->query($sql);
-    if ($result->num_rows) {
+    if($result->num_rows) {
         $row = $result->fetch_array();
         if ($row['password'] != $pw) {
             $msg = 'Wrong Password';
-        } else {
+        }
+        else {
             header('Location: index.php');
             exit;
         }
