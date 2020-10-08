@@ -4,6 +4,7 @@
         <img alt="StyleCI" src="https://github.styleci.io/repos/299347824/shield?branch=master">
     </a>
 </p>
-## About Online Grocery Store
+
+# About Online Grocery Store
 
 This project made By Himani in PHP.
