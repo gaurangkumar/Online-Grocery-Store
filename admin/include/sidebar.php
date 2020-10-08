@@ -26,19 +26,69 @@
         Interface
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- Product -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Product" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Product</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="Product" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!--<h6 class="collapse-header"></h6>-->
             <a class="collapse-item" href="products.php">All</a>
             <a class="collapse-item" href="product-add.php">Add</a>
           </div>
         </div>
+      </li>
+
+      <!-- Category -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Category" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Category</span>
+        </a>
+        <div id="Category" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <!--<h6 class="collapse-header"></h6>-->
+            <a class="collapse-item" href="category.php">All</a>
+            <a class="collapse-item" href="category-add.php">Add</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Order -->
+      <li class="nav-item">
+        <a class="nav-link" href="orders.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Orders</span></a>
+      </li>
+
+      <!-- Payment -->
+      <li class="nav-item">
+        <a class="nav-link" href="payment.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Payment</span></a>
+      </li>
+
+      <!-- Feedbacks -->
+      <li class="nav-item">
+        <a class="nav-link" href="feedbacks.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Feedbacks</span></a>
+      </li>
+
+      <!-- Users -->
+      <li class="nav-item">
+        <a class="nav-link" href="users.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Users</span></a>
+      </li>
+
+      <!-- Setting -->
+      <li class="nav-item">
+        <a class="nav-link" href="setting.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Setting</span></a>
       </li>
 
       <!-- Divider -->
@@ -48,13 +98,6 @@
       <div class="sidebar-heading">
         Addons
       </div>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
