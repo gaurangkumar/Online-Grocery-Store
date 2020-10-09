@@ -147,18 +147,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<h3>Top Products</h3>
 			<div class="w3l_fresh_vegetables_grids">
 				<div class="col-md-3 w3l_fresh_vegetables_grid w3l_fresh_vegetables_grid_left">
-					<div class="w3l_fresh_vegetables_grid2">
-						<ul>
-							
-							<li><i class="fa fa-check" aria-hidden="true"></i><a href="vegetables.php">Vegetables</a></li>
-							<li><i class="fa fa-check" aria-hidden="true"></i><a href="vegetables.php">Fruits</a></li>
-							
-							
-							<li><i class="fa fa-check" aria-hidden="true"></i><a href="household.php">Cleaning</a></li>
-							<li><i class="fa fa-check" aria-hidden="true"></i><a href="products.php">Spices</a></li>
-							
-						</ul>
-					</div>
+					
 				</div>
 				<div class="col-md-9 w3l_fresh_vegetables_grid_right">
 					<div class="col-md-4 w3l_fresh_vegetables_grid">
