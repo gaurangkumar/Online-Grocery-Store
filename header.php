@@ -106,7 +106,7 @@
           <ul class="special_items">
             <li><a href="about.php">About Us</a><i>/</i></li>
            
-            <li><a href="services.php">Services</a></li>
+            
           </ul>
         </div>
         <div class="w3ls_logo_products_left1">

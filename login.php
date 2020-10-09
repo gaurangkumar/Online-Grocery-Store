@@ -40,12 +40,7 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
-<!--
-author: W3layouts
-author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,9 +77,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					  <input type="password" name="Mobile" placeholder="Mobile No" required=" " pattern="[0-9]{10}" title="must be 10 charecter">
 					  <input type="text" name="Address" placeholder=" Address" required=" ">
 					  
-                      <input type="text" name="City" placeholder="City" required=" " value="Visnager" readonly style="text-align:center:">
-                      <input type="radio" name="Gn" placeholder="" required=" ">Male
-                       <input type="radio" name="Gn" placeholder="" required=" ">Female
+                      <input type="radio" name="Gn" placeholder=""  value="" required=" ">Male
+                       <input type="radio" name="Gn" placeholder="" value="" required=" ">Female
                       
                       <input type="text" name="Username" placeholder="Username" required=" ">
                       <input type="password" name="Password" placeholder="Password" required=" " pattern="[a-z0-9]{6}" title="password must be 8 charecter">
