@@ -1,6 +1,6 @@
 <?php
 $products = $cart = [];
-var_dump($_POST); exit;
+
 foreach ($_POST as $key => $val) {
     $array = explode('_', $key); // discount_amount_1 => Array([0] => discount, [1] => amount, [2] => 1)
 
@@ -18,6 +18,9 @@ foreach ($_POST as $key => $val) {
         $cart[$key] = $val;
     }
 }
+
+require("dbcon.php");
+
 ?>
 <!--
 author: W3layouts
@@ -28,129 +31,123 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Checkout</title>
+    <title>My Cart | Grocery Store</title>
 
 <?php
     include 'header.php'?>
-		<div class="w3l_banner_nav_right">
-            <!-- about -->
-            <div class="privacy about">
-                <h3>Chec<span>kout</span></h3>
-                <div class="checkout-right">
-                    <h4>Your shopping cart contains: <span><?php echo count($products); ?> Products</span></h4>
-                    <table class="timetable_sub">
-                        <thead>
-                            <tr>
-                                <th>SL No.</th>	
-                                <th>Product</th>
-                                <th>Quality</th>
-                                <th>Product Name</th>
+        <form action="checkout.php" method="post">
+            <div class="w3l_banner_nav_right">
+                <!-- about -->
+                <div class="privacy about">
+                    <h3>My <span>Cart</span></h3>
+                    <div class="checkout-right">
+                        <h4>Your shopping cart contains: <span><?=count($products)?> Products</span></h4>
+                        <table class="timetable_sub">
+                            <thead>
+                                <tr>
+                                    <th>#</th>	
+                                    <th>Product</th>
+                                    <th>Name</th>
+                                    <th>Rate</th>
+                                    <th>Quality</th>
+                                    <th>Price</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $total = 0;
+                                foreach ($products as $i => $product) {
+                                    $result = $conn->query('SELECT * FROM `product` WHERE `name` = "'.$product['item_name'].'"');
+                                    if($result) {
+                                        $row = $result->fetch_assoc();
+                                        $pid = $row['pid'];
+                                        $image = $row['pic'];
+                                        $amount = $product['amount'];
+                                        $products[$i]['subtotal'] = $subtotal = $product['amount'] * $product['quantity'];
+                                        $total += $subtotal;
+                                    }
+                                    else {
+                                        echo 'Product not found.';
+                                    }
+                                    ?>
+                                <tr class="rem<?=$pid?>">
+                                    <td class="invert">
+                                        <?=$i?>
+                                    </td>
 
-                                <th>Price</th>
-                                <th>Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($products as $i => $product) {
-                                ?>
-                            <tr class="rem<?php echo $i; ?>">
-                                <td class="invert"><?php echo $i; ?></td>
-                                <td class="invert-image">
-                                    <a href="single.php">
-                                        <img src="" alt=" " class="img-responsive">
-                                    </a>
-                                </td>
-                                <td class="invert">
-                                     <div class="quantity"> 
-                                        <div class="quantity-select">                           
-                                            <div class="entry value-minus">&nbsp;</div>
-                                            <div class="entry value">
-                                                <span>
-                                                    <?php echo $product['quantity']; ?>
-                                                    <input type="hidden" name="<?php echo $i; ?>" value="<?php echo $product['quantity']; ?>">
-                                                </span>
-                                            </div>
-                                            <div class="entry value-plus active">&nbsp;</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="invert"><span><?php echo $product['item_name']; ?></td>
-                                <td class="invert"><span><?php
-                                $s = $product['amount']; ?></td>
-                                <td class="invert">
-                                    <div class="rem" id="<?php echo $i; ?>">
-                                        <div class="close1"></div>
-                                    </div>
+                                    <td class="invert-image">
+                                        <a href="single.php">
+                                            <img src="<?=$image?>" alt="<?=$product['item_name']?>" class="img-responsive">
+                                        </a>
+                                    </td>
 
-                                </td>
-                            </tr>
-                            <?php
-                            }
-                            ?>
-                    </tbody>
-                    <?php  echo  $product['quantity']; ?>  
-                  </table>
-                </div>
-                <div class="checkout-left">	
-                    <div class="col-md-4 checkout-left-basket">
-                       
-                    </div>
-                    <div class="col-md-8 address_form_agile">
-                          <h4>Add a new Details</h4>
-                    <form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
-                                        <section class="creditly-wrapper wthree, w3_agileits_wrapper">
-                                            <div class="information-wrapper">
-                                                <div class="first-row form-group">
-                                                    <div class="controls">
-                                                        <label class="control-label">Full name: </label>
-                                                        <input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">
-                                                    </div>
-                                                    <div class="w3_agileits_card_number_grids">
-                                                        <div class="w3_agileits_card_number_grid_left">
-                                                            <div class="controls">
-                                                                <label class="control-label">Mobile number:</label>
-                                                                <input class="form-control" type="text" placeholder="Mobile number">
-                                                            </div>
-                                                        </div>
-                                                        <div class="w3_agileits_card_number_grid_right">
-                                                            <div class="controls">
-                                                                <label class="control-label">Landmark: </label>
-                                                             <input class="form-control" type="text" placeholder="Landmark">
-                                                            </div>
-                                                        </div>
-                                                        <div class="clear"> </div>
-                                                    </div>
-                                                    <div class="controls">
-                                                        <label class="control-label">Town/City: </label>
-                                                     <input class="form-control" type="text" placeholder="Town/City">
-                                                    </div>
-                                                        <div class="controls">
-                                                                <label class="control-label">Address type: </label>
-                                                         <select class="form-control option-w3ls">
-                                                                                                <option>Office</option>
-                                                                                                <option>Home</option>
-                                                                                                <option>Commercial</option>
+                                    <td class="invert">
+                                        <span id="name_<?=$pid?>">
+                                            <?=ucwords($product['item_name'])?>
+                                        </span>
+                                    </td>
+                                    <input type="hidden" name="name_<?=$pid?>" value="<?=$product['item_name']?>">
 
-                                                                                        </select>
-                                                        </div>
+                                    <td class="invert">
+                                        <span id="amount_<?=$pid?>"><?=$product['amount']?></span>
+                                    </td>
+                                    <input type="hidden" name="amount_<?=$pid?>" value="<?=$product['amount']?>">
+
+                                    <td class="invert">
+                                         <div class="quantity"> 
+                                            <div class="quantity-select">                           
+                                                <div class="entry value-minus" data-id="<?=$pid?>">&nbsp;</div>
+                                                <div class="entry value">
+                                                    <span><?=$product['quantity']?></span>
                                                 </div>
-                                                <button class="submit check_out">Delivery to this Address</button>
+                                                <div class="entry value-plus active" data-id="<?=$pid?>">&nbsp;</div>
                                             </div>
-                                        </section>
-                                    </form>
-                                        <div class="checkout-right-basket">
-                                <a href="payment.html">Make a Payment <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
-                        </div>
-                        </div>
+                                        </div>
+                                    </td>
+                                    <input type="hidden" name="quantity_<?=$pid?>" value="<?=$product['quantity']?>">
 
-                    <div class="clearfix"> </div>
+                                    <td class="invert">
+                                        <span id="subtotal_<?=$pid?>"><?=$subtotal?></span>
+                                    </td>
+                                    <input type="hidden" name="subtotal_<?=$pid?>" value="<?=$subtotal?>">
 
+                                    <td class="invert">
+                                        <div class="rem" id="<?$i?>">
+                                            <div class="close1"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <?php
+                                }
+                                ?>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="checkout-left">
+                        <div class="col-md-4 checkout-left-basket">
+                            <ul>
+                                <li style="font-size: 20px">Delivery Charges <i>-</i> <span class="text-primary">Free</span></li>
+                                <li><hr></li>
+                                <li style="font-weight: bolder;font-size: 20px">Total  <span id="total"><?=$total?></span> <span>₹</span></li>
+                                <input type="hidden" name="total" value="<?=$total?>">
+                            </ul>
+                            <div class="row">
+                            </div>
+                        </div>
+                        <div class="col-md-8 address_form_agile">
+                            <section class="creditly-wrapper wthree, w3_agileits_wrapper" style="margin-top: 35px">
+                                <div class="information-wrapper">
+                                    <button class="submit check_out btn-block">Place Order</button>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
-
+                <!-- //about -->
             </div>
-            <!-- //about -->
-		</div>
+        </form>
 		<div class="clearfix"></div>
 	</div>
     <!-- //banner -->
@@ -159,19 +156,42 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     <!--quantity-->
     <script>
-    $('.value-plus').on('click', function(){
-        var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
-        divUpd.text(newVal);
+    $('.value-plus').on('click', function() {
+        id = $(this).attr('data-id');
+        var divUpd = $(this).parent().find('.value');
+        quantity1 = parseInt(divUpd.text(), 10)
+        quantity2 = quantity1 + 1;
+        if(quantity2 < 1) { quantity2 = 1; }
+        divUpd.text(quantity2);
+        $('[name=quantity_'+id+']').val(quantity2);
+        amount = Number($('#amount_'+id).text());
+        subtotal = quantity2 * amount;
+        $('[name=subtotal_'+id+']').val(subtotal);
+        $('#subtotal_'+id).text(subtotal);
+        total1 = Number($('#total').text());
+        total2 = total1 + (amount * (quantity2 - quantity1));
+        $('#total').text(total2);
+        $('[name=total]').val(total2);
     });
 
-    $('.value-minus').on('click', function(){
-        var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
-        if(newVal>=1) divUpd.text(newVal);
+    $('.value-minus').on('click', function() {
+        id = $(this).attr('data-id');
+        var divUpd = $(this).parent().find('.value');
+        quantity1 = parseInt(divUpd.text(), 10)
+        quantity2 = quantity1 - 1;
+        if(quantity2 < 1) { quantity2 = 1; }
+        divUpd.text(quantity2);
+        $('[name=quantity_'+id+']').val(quantity2);
+        amount = Number($('#amount_'+id).text());
+        subtotal = quantity2 * amount;
+        $('[name=subtotal_'+id+']').val(subtotal);
+        $('#subtotal_'+id).text(subtotal);
+        total1 = Number($('#total').text());
+        total2 = total1 + (amount * (quantity2 - quantity1));
+        $('#total').text(total2);
+        $('[name=total]').val(total2);
     });
-    </script>
-    <!--quantity-->
 
-    <script>
     $(document).ready(function(c) {
         $('.rem').on('click', function(c) {
             id = $(this).attr("id");
@@ -180,23 +200,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             });
         });
     });
-    </script>
-    <script>$(document).ready(function(c) {
+
+    $(document).ready(function(c) {
         $('.close2').on('click', function(c){
             $('.rem2').fadeOut('slow', function(c){
                 $('.rem2').remove();
             });
             });	  
         });
-   </script>
-    <script>$(document).ready(function(c) {
+
+    $(document).ready(function(c) {
         $('.close3').on('click', function(c){
             $('.rem3').fadeOut('slow', function(c){
                 $('.rem3').remove();
             });
-            });	  
-        });
-   </script>
+        });	  
+    });
+    </script>
 
 </body>
 </html>
