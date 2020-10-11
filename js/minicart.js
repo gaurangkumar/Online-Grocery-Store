@@ -1903,7 +1903,7 @@ var defaults = module.exports = {
 
     parent: (typeof document !== 'undefined') ? document.body : null,
 
-    action:  'checkout.php',
+    action:  'viewcart.php',
 
     target: '',
 
