@@ -1,8 +1,8 @@
     <meta charset="utf-8">
-
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
     <meta name="keywords" content="Grocery Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design">
 
     <link rel = "icon" href ="image/logo1.png" type = "image/x-icon">
@@ -106,7 +106,7 @@
           <ul class="special_items">
             <li><a href="about.php">About Us</a><i>/</i></li>
            
-            
+            <li><a href="services.php">Services</a></li>
           </ul>
         </div>
         <div class="w3ls_logo_products_left1">
