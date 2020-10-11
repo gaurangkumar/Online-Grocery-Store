@@ -6,27 +6,16 @@
 				<ul class="w3_footer_grid_list">
 					
 					<li><a href="about.php">About Us</a></li>
-					
-					<li><a href="services.php">Services</a></li>
-					<li><a href="short-codes.php">Short Codes</a></li>
-				</ul>
-			</div>
-			<div class="col-md-3 w3_footer_grid">
-				<h3>policy info</h3>
-				<ul class="w3_footer_grid_list">
-					
-					<li><a href="privacy.php">privacy policy</a></li>
-					<li><a href="privacy.php">terms of use</a></li>
 				</ul>
 			</div>
 			<div class="col-md-3 w3_footer_grid">
 				<h3>what in stores</h3>
 				<ul class="w3_footer_grid_list">
 					
-					<li><a href="grocery.php">Grocery</a></li>
+					<li><a href="products.php">Grocery</a></li>
 					
 					<li><a href="products.php">Branded </a></li>
-					<li><a href="household.php">Households</a></li>
+					<li><a href="products.php">Households</a></li>
 				</ul>
 			</div>
 			<div class="col-md-3 w3_footer_grid">
