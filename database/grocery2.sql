@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2020 at 02:34 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Oct 11, 2020 at 11:18 AM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -20,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `grocery`
 --
-CREATE DATABASE IF NOT EXISTS `grocery` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `grocery`;
 
 -- --------------------------------------------------------
 
@@ -29,20 +28,19 @@ USE `grocery`;
 -- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `aid` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `emailid` varchar(50) NOT NULL,
-  `password` int(10) NOT NULL
+  `email` varchar(50) NOT NULL,
+  `password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`aid`, `name`, `emailid`, `password`) VALUES
-(1, 'himani', 'himaniaasoda1999@gmail.com', 8814);
+INSERT INTO `admin` (`aid`, `name`, `email`, `password`) VALUES
+(1, 'himani', 'himaniaasoda1999@gmail.com', '8814');
 
 -- --------------------------------------------------------
 
@@ -50,7 +48,6 @@ INSERT INTO `admin` (`aid`, `name`, `emailid`, `password`) VALUES
 -- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `cid` int(10) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
@@ -74,10 +71,33 @@ INSERT INTO `category` (`cid`, `name`, `parent_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `fid` int(10) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `mobile` varchar(12) DEFAULT NULL,
+  `msg` varchar(100) DEFAULT NULL,
+  `uid` int(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`fid`, `name`, `mobile`, `msg`, `uid`) VALUES
+(1, 'dax', '9106682997', 'good', NULL),
+(2, 'dax', '9106682997', 'good', NULL),
+(3, 'dax', '9106682997', 'good', NULL),
+(4, 'dax', '9106682997', 'good', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ord`
 --
 
-DROP TABLE IF EXISTS `ord`;
 CREATE TABLE `ord` (
   `oid` int(10) NOT NULL,
   `pid` int(10) DEFAULT NULL,
@@ -92,7 +112,6 @@ CREATE TABLE `ord` (
 -- Table structure for table `payment`
 --
 
-DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
   `payid` int(10) NOT NULL,
   `total amount` int(20) DEFAULT NULL,
@@ -107,7 +126,6 @@ CREATE TABLE `payment` (
 -- Table structure for table `product`
 --
 
-DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `pid` int(10) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
@@ -141,8 +159,15 @@ INSERT INTO `product` (`pid`, `name`, `price`, `discount`, `weight`, `pic`, `cid
 (16, 'Masur dal', 60, 65, '(1 kg)', 'images/masur.jpg', 7),
 (17, 'Chana dal', 40, 50, '(500 gm)', 'images/chanadal.jpg', 7),
 (18, 'Chana', 50, 55, '(1 kg)', 'images/chana.jpg', 8),
-(19, 'Mug', 40, 50, '(1 kg)', 'images/mung.jpg', 8),
-(20, 'Urad', 100, 10, '(1 kg)', 'images/ur.jpg', 8);
+(19, 'Mug', 40, 55, '1 kg', 'images/mung.jpg', 8),
+(25, 'clinic plush', 50, 54, '700 ml', 'images/1602260557-clinic.jpg', 2),
+(26, 'chik', 50, 54, '700 ml', 'images/1602266961-chick.jpg', 2),
+(27, 'Dettol', 40, 0, '4 pc', 'images/1602267040-d3.jpg', 2),
+(28, 'Dettol Handwash', 30, 40, '250ml', 'images/1602267137-dh.jpg', 2),
+(29, 'lifebuoy', 50, 50, '4 pc', 'images/1602267355-life.jpg', 2),
+(31, 'surf excel', 150, 160, '1kg', 'images/1602267705-surf2.jpg', 3),
+(33, 'Nirma', 40, 50, '1 kg', 'images/1602267875-nirma.jpg', 3),
+(38, 'brinjal', 40, 50, '1kg', 'images/1602268367-31.png', 4);
 
 -- --------------------------------------------------------
 
@@ -150,13 +175,12 @@ INSERT INTO `product` (`pid`, `name`, `price`, `discount`, `weight`, `pic`, `cid
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `uid` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `mobile` int(10) NOT NULL,
+  `mobile` varchar(10) NOT NULL,
   `address1` varchar(50) NOT NULL,
-  `gender` varchar(50) NOT NULL,
+  `gender` enum('male','female') DEFAULT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -166,11 +190,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`uid`, `name`, `mobile`, `address1`, `gender`, `username`, `password`) VALUES
-(25, 'himani', 1236547898, 'visnager, VILLAGE=ASODA', 'on', 'daxrp', '6034'),
-(26, 'himani', 2147483647, 'visnager, VILLAGE=ASODA', 'on', 'hds', 'hd6034'),
-(27, 'himani', 2147483647, 'visnager, VILLAGE=ASODA', 'on', 'hds', '6034hd'),
-(28, '', 0, '', '', '', ''),
-(29, 'himani', 2147483647, 'visnager, VILLAGE=ASODA', 'on', 'hds', '6034hd');
+(32, 'himani', '9106682997', 'visnager, VILLAGE=ASODA', '', 'himani', 'hd6034'),
+(33, 'divya', '9979331605', 'visnager, VILLAGE=ASODA', '', 'daxrp', 'dk7845'),
+(34, 'kishan', '9714304713', 'visnager', '', 'kishan rp', 'kr9856'),
+(35, 'rajubhai', '9979331605', 'asoda', '', 'daxrp', 'rp1236'),
+(36, 'sonali', '1236547898', 'visnager,', '', 'sonali', 'sp1236');
 
 --
 -- Indexes for dumped tables
@@ -187,6 +211,13 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`cid`);
+
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`fid`),
+  ADD KEY `feedback_ibfk_1` (`uid`);
 
 --
 -- Indexes for table `ord`
@@ -226,40 +257,45 @@ ALTER TABLE `user`
 --
 ALTER TABLE `admin`
   MODIFY `aid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+  MODIFY `cid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `fid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `ord`
 --
 ALTER TABLE `ord`
   MODIFY `oid` int(10) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
   MODIFY `payid` int(10) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
+  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
+  MODIFY `uid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `ord`

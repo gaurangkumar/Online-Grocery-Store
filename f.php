@@ -6,7 +6,8 @@
 </head>
 
 <body>
-<?php include 'header.php'?>
+<?php require 'dbcon.php';
+require 'header.php'; ?>
 
 
 		<div class="w3l_banner_nav_right">
@@ -20,7 +21,7 @@
 					
 				  </div>
 				  <div class="form">
-                   <?php  include 'dbcon.php' ?>
+                   
 						<?php
 
                         if (isset($_POST['login'])) {
@@ -30,7 +31,7 @@
                             $sql = "UPDATE user SET password='$pw' WHERE  username='$un' ";
                             if ($conn->query($sql) === true) {
                                 echo 'your password is forgot ';
-                                header('Location: login.php.php');
+                                header('Location: login.php');
                                 exit;
                             } else {
                                 echo 'Error updating record: '.$conn->error;
