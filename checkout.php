@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-require("dbcon.php");
+require 'dbcon.php';
 
-if(!isset($_SESSION['products']) || empty($_SESSION['products'])) {
-    if(empty($_POST)) {
-        header("Location: index.php");
+if (!isset($_SESSION['products']) || empty($_SESSION['products'])) {
+    if (empty($_POST)) {
+        header('Location: index.php');
         exit;
     }
     foreach ($_POST as $key => $val) {
@@ -29,21 +29,20 @@ if(!isset($_SESSION['products']) || empty($_SESSION['products'])) {
     $total = $cart['total'];
     $_SESSION['products'] = $products;
     $_SESSION['total'] = $total;
-}
-else {
+} else {
     $products = $_SESSION['products'];
     $total = $_SESSION['total'];
 }
 
-if(isset($_SESSION['USER_ID']) && !empty($_SESSION['USER_ID'])) {
+if (isset($_SESSION['USER_ID']) && !empty($_SESSION['USER_ID'])) {
     $uid = $_SESSION['USER_ID'];
     $total = $_SESSION['total'];
-    
+
     // Save order in ord
     $query = "INSERT INTO `ord`(`uid`, `total`) VALUES ($uid, $total)";
     $result = $conn->query($query);
-    if(!$result) {
-        echo "Error: ".$conn->error;
+    if (!$result) {
+        echo 'Error: '.$conn->error;
         exit;
     }
     // Get oid of last saved order
@@ -55,8 +54,8 @@ if(isset($_SESSION['USER_ID']) && !empty($_SESSION['USER_ID'])) {
         $query = "INSERT INTO `order_items`(`oid`, `pid`, `quantity`, `amount`, `subtotal`) 
         VALUES ($oid, $pid, $product[quantity], $product[amount], $product[subtotal])";
         $result = $conn->query($query);
-        if(!$result) {
-            echo "Error: ".$conn->error;
+        if (!$result) {
+            echo 'Error: '.$conn->error;
             exit;
         }
     }
@@ -64,8 +63,8 @@ if(isset($_SESSION['USER_ID']) && !empty($_SESSION['USER_ID'])) {
     // Save payment info in payment
     $query = "INSERT INTO `payment`(`total_amount`, `payment_type`, `oid`, `uid`) VALUES ($total, 'COD', $oid, $uid)";
     $result = $conn->query($query);
-    if(!$result) {
-        echo "Error: ".$conn->error;
+    if (!$result) {
+        echo 'Error: '.$conn->error;
         exit;
     }
 }
@@ -86,8 +85,8 @@ if(isset($_SESSION['USER_ID']) && !empty($_SESSION['USER_ID'])) {
 
                  <div class="checkout-right">
                     <?php
-                    if(!isset($_SESSION['USER_ID']) || empty($_SESSION['USER_ID'])) {
-                    ?>
+                    if (!isset($_SESSION['USER_ID']) || empty($_SESSION['USER_ID'])) {
+                        ?>
                     <div class="col-md-12 address_form_agile">
                         <section class="creditly-wrapper wthree, w3_agileits_wrapper" style="margin-top: 35px">
                             <div class="information-wrapper">
@@ -99,9 +98,8 @@ if(isset($_SESSION['USER_ID']) && !empty($_SESSION['USER_ID'])) {
                     </div>
                     <div class="clearfix"></div>
                     <?php
-                    }
-                    else {
-                    ?>
+                    } else {
+                        ?>
                     <div class="col-md-12 address_form_agile">
                         <section class="creditly-wrapper wthree, w3_agileits_wrapper" style="margin-top: 35px">
                             <div class="information-wrapper">

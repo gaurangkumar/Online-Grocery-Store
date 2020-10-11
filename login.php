@@ -1,14 +1,13 @@
 <?php
 include 'dbcon.php';
 session_start();
-if(isset($_GET['page']) && !empty($_GET['page'])) {
-    $page = $_GET['page'].".php";
-}
-else {
-    $page = "index.php";
+if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $page = $_GET['page'].'.php';
+} else {
+    $page = 'index.php';
 }
 
-if(isset($_SESSION['USER_ID']) && !empty($_SESSION['USER_ID'])) {
+if (isset($_SESSION['USER_ID']) && !empty($_SESSION['USER_ID'])) {
     header("Location: $page");
     exit;
 }

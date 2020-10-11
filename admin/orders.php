@@ -96,7 +96,7 @@ $total_ord = $result->num_rows;
                                             while ($row = $result->fetch_assoc()) {
                                                 $result1 = $conn->query("SELECT `name` FROM `user` WHERE `uid` = $row[uid]");
                                                 $ord = $result1->fetch_assoc();
-												 $result1 = $conn->query("SELECT `name` FROM `product` WHERE `pid` = $row[pid]");
+                                                $result1 = $conn->query("SELECT `name` FROM `product` WHERE `pid` = $row[pid]");
                                                 $ord1 = $result1->fetch_assoc(); ?>
                                         <tr>
                                             <td><?=$row['oid']?></td>

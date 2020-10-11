@@ -93,7 +93,7 @@ $total_feedback = $result->num_rows;
                                         <?php
                                         if ($total_feedback) {
                                             while ($row = $result->fetch_assoc()) {
-                                                 ?>
+                                                ?>
                                         <tr>
                                             <td><?=$row['fid']?></td>
                                             <td><?=$row['name']?></td>

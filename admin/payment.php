@@ -96,7 +96,7 @@ $total_pay = $result->num_rows;
                                             while ($row = $result->fetch_assoc()) {
                                                 $result1 = $conn->query("SELECT `name` FROM `user` WHERE `uid` = $row[uid]");
                                                 $ord = $result1->fetch_assoc();
-												 $result1 = $conn->query("SELECT `name` FROM `ord` WHERE `oid` = $row[oid]");
+                                                $result1 = $conn->query("SELECT `name` FROM `ord` WHERE `oid` = $row[oid]");
                                                 $ord1 = $result1->fetch_assoc(); ?>
                                         <tr>
                                             <td><?=$row['Payid']?></td>

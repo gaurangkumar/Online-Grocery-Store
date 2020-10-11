@@ -19,7 +19,7 @@ foreach ($_POST as $key => $val) {
     }
 }
 
-require("dbcon.php");
+require 'dbcon.php';
 
 ?>
 <!--
@@ -59,18 +59,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 $total = 0;
                                 foreach ($products as $i => $product) {
                                     $result = $conn->query('SELECT * FROM `product` WHERE `name` = "'.$product['item_name'].'"');
-                                    if($result) {
+                                    if ($result) {
                                         $row = $result->fetch_assoc();
                                         $pid = $row['pid'];
                                         $image = $row['pic'];
                                         $amount = $product['amount'];
                                         $products[$i]['subtotal'] = $subtotal = $product['amount'] * $product['quantity'];
                                         $total += $subtotal;
-                                    }
-                                    else {
+                                    } else {
                                         echo 'Product not found.';
-                                    }
-                                    ?>
+                                    } ?>
                                 <tr class="rem<?=$pid?>">
                                     <td class="invert">
                                         <?=$i?>
