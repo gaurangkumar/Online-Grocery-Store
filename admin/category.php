@@ -4,17 +4,17 @@ if (!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
     header('Location: login.php');
     exit;
 }
-require 'include/dbcon.php';
+require '../dbcon.php';
 
-$result = $conn->query('SELECT * FROM `product` ORDER BY `pid` DESC');
-$total_product = $result->num_rows;
+$result = $conn->query('SELECT * FROM `category` ORDER BY `cid` DESC');
+$total_category = $result->num_rows;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <?php
-    $title = 'All Products | Admin';
+    $title = 'All Category | Admin';
     require 'include/head.php';
 ?>
 </head>
@@ -47,8 +47,8 @@ $total_product = $result->num_rows;
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">All Products (<?=$total_product?>)</h1>
-            <a href="product-add.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <h1 class="h3 mb-0 text-gray-800">All Category (<?=$total_category?>)</h1>
+            <a href="category-add.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             	<i class="fa fa-plus-circle"></i> Create New
             </a>
           </div>
@@ -81,35 +81,27 @@ $total_product = $result->num_rows;
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Pid</th>
+                                            <th>CID</th>
                                             <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Discount</th>
-                                            <th>Weight</th>
-                                            <th>Image</th>
-                                            <th>Category</th>
+                                            <th>Parent Category</th>
                                             <th class="text-nowrap">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        if ($total_product) {
+                                        if ($total_category) {
                                             while ($row = $result->fetch_assoc()) {
-                                                $result1 = $conn->query("SELECT `name` FROM `category` WHERE `cid` = $row[cid]");
+                                                $result1 = $conn->query("SELECT `name` FROM `category` WHERE `cid` = $row[parent_id]");
                                                 $category = $result1->fetch_assoc(); ?>
                                         <tr>
-                                            <td><?=$row['pid']?></td>
+                                            <td><?=$row['cid']?></td>
                                             <td><?=$row['name']?></td>
-                                            <td><?=$row['price']?></td>
-                                            <td><?=$row['discount']?></td>
-                                            <td><?=$row['weight']?></td>
-                                            <td><img src="../<?=$row['pic']?>" width="100"></td>
                                             <td><?=$category['name']?></td>
                                             <td class="text-nowrap">
-                                                <a href="product-edit.php?id=<?=$row['pid']?>" class="btn btn-outline-info">
+                                                <a href="category-edit.php?id=<?=$row['cid']?>" class="btn btn-outline-info">
                                                 	<i class="fa fa-close text-info"></i> Edit
                                                 </a>
-                                                <a href="include/product-delete.php?id=<?=$row['pid']?>" class="btn btn-outline-danger">
+                                                <a href="include/category-delete.php?id=<?=$row['cid']?>" class="btn btn-outline-danger">
                                                 	<i class="fa fa-close text-danger"></i> Remove
                                                 </a>
                                             </td>
@@ -153,25 +145,6 @@ $total_product = $result->num_rows;
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.php">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
 <?php
     require 'include/javascript.php';

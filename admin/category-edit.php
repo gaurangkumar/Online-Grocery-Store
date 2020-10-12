@@ -4,7 +4,7 @@ if (!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
     header('Location: login.php');
     exit;
 }
-require 'include/dbcon.php';
+require '../dbcon.php';
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     header('Location: category.php');
     exit;
