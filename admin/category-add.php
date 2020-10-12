@@ -4,14 +4,14 @@ if (!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
     header('Location: login.php');
     exit;
 }
-require '../dbcon.php';
+require 'include/dbcon.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <?php
-    $title = 'Add Category | Admin';
+    $title = 'Add Product | Admin';
     require 'include/head.php';
 ?>
 </head>
@@ -44,14 +44,14 @@ require '../dbcon.php';
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Add Category</h1>
+            <h1 class="h3 mb-0 text-gray-800">Add Product</h1>
             <!--<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
           </div>
 
           <!-- Content Row -->
           <div class="row">
             <div class="col-lg-12 mb-4">
-                <form action="include/save-category.php" method="post" >
+                <form action="include/save-product.php" method="post" enctype="multipart/form-data">
                     <div class="form-group m-t-40">
                         <?php
                         if (!isset($_SESSION['msg']) || $_SESSION['msg'] == '') {
@@ -69,12 +69,27 @@ require '../dbcon.php';
                     </div>
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input class="form-control" id="name" name="name" type="text" placeholder="Category Name">
+                        <input class="form-control" id="name" name="name" type="text" placeholder="Product Name">
                     </div>
-                   
-                  <div class="form-group">
-                        <label for="parent_id">Select Parent Category</label>
-                        <select class="form-control" id="parent_id" name="parent_id">
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input class="form-control" id="price" name="price" type="number" placeholder="Product Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="discount">Discount</label>
+                        <input class="form-control" id="discount" name="discount" type="number" value="0" placeholder="Product Discount">
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Weight</label>
+                        <input class="form-control" id="weight" name="weight" type="text" placeholder="Product Weight">
+                    </div>
+                    <div class="form-group">
+                        <label for="pic">Image</label>
+                        <input class="form-control" id="pic" name="pic" type="file" placeholder="Product Image">
+                    </div>
+                    <div class="form-group">
+                        <label for="cid">Select Category</label>
+                        <select class="form-control" id="cid" name="cid">
                         	<?php
                             $result = $conn->query('SELECT * FROM `category`');
                             if ($result->num_rows) {
@@ -86,7 +101,7 @@ require '../dbcon.php';
                         </select>
                     </div>
                     <div class="form-group">
-                    	<button class="btn btn-primary">Save Category</button>
+                    	<button class="btn btn-primary">Save Product</button>
                     </div>
                 </form>
             </div>
@@ -118,6 +133,25 @@ require '../dbcon.php';
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <?php
     require 'include/javascript.php';
