@@ -7,8 +7,20 @@ if (!isset($_SESSION['ADMIN_ID']) || empty($_SESSION['ADMIN_ID'])) {
 
 require '../dbcon.php';
 
-$result = $conn->query('SELECT * FROM `ord` ORDER BY `oid` DESC');
-$total_order = $result->num_rows;
+if (!isset($_GET['id']) || empty($_GET['id'])) {
+    header('Location: orders.php');
+    exit;
+}
+$oid = (int) $_GET['id'];
+
+$result = $conn->query('SELECT * FROM `order_items` WHERE `oid` = '.$oid);
+$total_items = $result->num_rows;
+
+$order = $conn->query('SELECT * FROM `ord` WHERE `oid` = '.$oid)
+              ->fetch_assoc();
+
+$user = $conn->query('SELECT * FROM `user` WHERE `uid` = '.$order['uid'])
+              ->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +60,7 @@ $total_order = $result->num_rows;
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">All Orders (<?=$total_order?>)</h1>
+            <h1 class="h3 mb-0 text-gray-800">All Order Items (<?=$total_items?>)</h1>
             <!--<a href="category-add.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             	<i class="fa fa-plus-circle"></i> Create New
             </a>-->
@@ -77,34 +89,34 @@ $total_order = $result->num_rows;
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title"> </h4>
+                            <h4 class="card-title">
+                                Order ID: <?=$oid?><br>
+                                User: <?=ucwords($user['name'])?><br>
+                                Total amount: ₹ <?=$order['total']?>
+                            </h4>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>OID</th>
-                                            <th>User</th>
-                                            <th>Total</th>
-                                            <th>Date</th>
-                                            <th class="text-nowrap">Order Items</th>
+                                            <th>Item_ID</th>
+                                            <th>Product Image</th>
+                                            <th>Product Name</th>
+                                            <th>Quantity</th>
+                                            <th>Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        if ($total_order) {
+                                        if ($total_items) {
                                             while ($row = $result->fetch_assoc()) {
-                                                $result1 = $conn->query("SELECT `name` FROM `user` WHERE `uid` = $row[uid]");
-                                                $ord = $result1->fetch_assoc(); ?>
+                                                $product = $conn->query("SELECT `name`, `pic` FROM `product` WHERE `pid` = $row[pid]")
+                                                    ->fetch_assoc(); ?>
                                         <tr>
-                                            <td><?=$row['oid']?></td>
-                                            <td><?=$ord['name']?></td>
-                                            <td><?=$row['total']?></td>
-                                            <td><?=$row['date']?></td>
-                                            <td class="text-nowrap">
-                                                <a href="order-items.php?id=<?=$row['oid']?>" class="btn btn-outline-info">
-                                                	<i class="fa fa-eye"></i> Show
-                                                </a>
-                                            </td>
+                                            <td><?=$row['item_id']?></td>
+                                            <td><img src="../<?=$product['pic']?>" width="100"></td>
+                                            <td><?=ucwords($product['name'])?></td>
+                                            <td><?=$row['quantity']?></td>
+                                            <td><?=$row['amount']?></td>
                                         </tr>
 										<?php
                                             }

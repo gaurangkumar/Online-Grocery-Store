@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'dbcon.php';
 $result = $conn->query('SELECT * FROM `product` LIMIT 8');
 ?>

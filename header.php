@@ -62,12 +62,23 @@
       </div>
       <div class="w3l_header_right">
         <ul>
-          <li class="dropdown profile_details_drop"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
+          <li class="dropdown profile_details_drop">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span class="caret"></span>
+              </a>
             <div class="mega-dropdown-menu">
               <div class="w3ls_vegetables">
                 <ul class="dropdown-menu drp-mnu">
-                  <li><a href="login.php">Login</a></li>
-                  <li><a href="login.php">Sign Up</a></li>
+                    <?php
+                    if(isset($_SESSION['USER_ID']) && !empty($_SESSION['USER_ID'])) {
+                        echo '<li><a href="#">'.ucwords($_SESSION['USER_NAME']).'</a></li>';
+                        echo '<li><a href="logout.php">Logout</a></li>';
+                    }
+                    else {
+                        echo '<li><a href="login.php">Login/Signup</a></li>';
+                    }
+                    ?>
                 </ul>
               </div>
             </div>
@@ -105,17 +116,16 @@
         <div class="w3ls_logo_products_left1">
           <ul class="special_items">
             <li><a href="about.php">About Us</a><i>/</i></li>
-           
             <li><a href="services.php">Services</a></li>
           </ul>
         </div>
         <div class="w3ls_logo_products_left1">
           <ul class="phone_email">
-            <li><i class="fa fa-phone" aria-hidden="true"></i>(+91)9979331605</li>
-            <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">himaniaasoda1999@gmail.com</a></li>
+            <li><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:+919979331605">(+91) 9979331605</a></li>
+            <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com"> <a href="mailto:store@grocery.com">store@grocery.com</a></li>
           </ul>
         </div>
-        <div class="clearfix"> </div>
+        <div class="clearfix"></div>
       </div>
     </div>
     <!-- //header --> 
