@@ -15,7 +15,7 @@ $total_user = $result->num_rows;
 
 <head>
 <?php
-    $title = 'All User | Admin';
+    $title = 'All Users | Admin';
     require 'include/head.php';
 ?>
 </head>
@@ -48,10 +48,10 @@ $total_user = $result->num_rows;
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">All user (<?=$total_user?>)</h1>
-            <a href="include/category-add.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <h1 class="h3 mb-0 text-gray-800">All Users (<?=$total_user?>)</h1>
+            <!--<a href="include/category-add.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             	<i class="fa fa-plus-circle"></i> Create New
-            </a>
+            </a>-->
           </div>
 
           <!-- Content Row -->
@@ -77,35 +77,31 @@ $total_user = $result->num_rows;
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title"> </h4>
+                            <h4 class="card-title"></h4>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>uid</th>
+                                            <th>UID</th>
                                             <th>Name</th>
                                             <th>Mobile</th>
                                             <th>Address</th>
                                             <th>Gender</th>
                                             <th>UserName</th>
-                                            <th>Password</th>
-                                            <th class="text-nowrap">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         if ($total_user) {
                                             while ($row = $result->fetch_assoc()) {
-                                                ?>
+                                        ?>
                                         <tr>
                                             <td><?=$row['uid']?></td>
-                                            <td><?=$row['name']?></td>
+                                            <td><?=ucwords($row['name'])?></td>
                                             <td><?=$row['mobile']?></td>
-                                            <td><?=$row['address1']?></td>
+                                            <td><?=strtolower($row['address1'])?></td>
                                             <td><?=$row['gender']?></td>
                                             <td><?=$row['username']?></td>
-                                            <td><?=$row['password']?></td>
-                                            
                                         </tr>
 										<?php
                                             }

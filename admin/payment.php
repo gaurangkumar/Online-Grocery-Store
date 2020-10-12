@@ -15,7 +15,7 @@ $total_pay = $result->num_rows;
 
 <head>
 <?php
-    $title = 'All Payment | Admin';
+    $title = 'All Payments | Admin';
     require 'include/head.php';
 ?>
 </head>
@@ -48,10 +48,10 @@ $total_pay = $result->num_rows;
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">All Payment (<?=$total_pay?>)</h1>
-            <a href="category-add.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <h1 class="h3 mb-0 text-gray-800">All Payments (<?=$total_pay?>)</h1>
+            <!--<a href="category-add.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             	<i class="fa fa-plus-circle"></i> Create New
-            </a>
+            </a>-->
           </div>
 
           <!-- Content Row -->
@@ -82,32 +82,25 @@ $total_pay = $result->num_rows;
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Payid</th>
-                                            <th>TotalAmount</th>
-                                            <th>PaymentType</th>
-                                            <th>Oid</th>
-                                            <th>Uid</th>
-                                            <th class="text-nowrap">Action</th>
+                                            <th>Pay ID</th>
+                                            <th>Order ID</th>
+                                            <th>Total Amount</th>
+                                            <th>Payment Type</th>
+                                            <th>User</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         if ($total_pay) {
                                             while ($row = $result->fetch_assoc()) {
-                                                $result1 = $conn->query("SELECT `name` FROM `user` WHERE `uid` = $row[uid]");
-                                                $ord = $result1->fetch_assoc();
-                                                $result1 = $conn->query("SELECT `name` FROM `ord` WHERE `oid` = $row[oid]");
-                                                $ord1 = $result1->fetch_assoc(); ?>
+                                                $user = $conn->query("SELECT `name` FROM `user` WHERE `uid` = $row[uid]")
+                                                             ->fetch_assoc(); ?>
                                         <tr>
-                                            <td><?=$row['Payid']?></td>
-                                            <td><?=$row['total amount']?></td>
-                                            <td><?=$row['paymenttype']?></td>
-                                            <td><?=$ord['name']?></td>
-                                            <td><?=$ord1['name']?></td>
-                                            <td class="text-nowrap">
-                                                
-                                                
-                                            </td>
+                                            <td><?=$row['payid']?></td>
+                                            <td><a class="alert-link" href="order-items.php?id=<?=$row['oid']?>" title="Order Info"><?=$row['oid']?></a></td>
+                                            <td><?=$row['total_amount']?></td>
+                                            <td><?=$row['payment_type']?></td>
+                                            <td><?=ucwords($user['name'])?></td>
                                         </tr>
 										<?php
                                             }

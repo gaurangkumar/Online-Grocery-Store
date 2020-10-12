@@ -84,23 +84,26 @@
           <span>Users</span></a>
       </li>
 
-      <!-- Setting -->
+      <!-- Setting 
       <li class="nav-item">
         <a class="nav-link" href="setting.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Setting</span></a>
       </li>
+      -->
 
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
+      <!-- Heading 
       <div class="sidebar-heading">
         Addons
       </div>
+      -->
 
-      <!-- Divider -->
+      <!-- Divider 
       <hr class="sidebar-divider d-none d-md-block">
+      -->
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">

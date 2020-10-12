@@ -15,7 +15,7 @@ $total_feedback = $result->num_rows;
 
 <head>
 <?php
-    $title = 'All User | Admin';
+    $title = 'All Feedbacks | Admin';
     require 'include/head.php';
 ?>
 </head>
@@ -48,10 +48,10 @@ $total_feedback = $result->num_rows;
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">All feedback (<?=$total_feedback?>)</h1>
-            <a href="include/category-add.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <h1 class="h3 mb-0 text-gray-800">All Feedbacks (<?=$total_feedback?>)</h1>
+            <!--<a href="include/category-add.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             	<i class="fa fa-plus-circle"></i> Create New
-            </a>
+            </a>-->
           </div>
 
           <!-- Content Row -->
@@ -82,11 +82,10 @@ $total_feedback = $result->num_rows;
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>fid</th>
+                                            <th>FID</th>
                                             <th>Name</th>
                                             <th>Mobile</th>
-                                            <th>msg</th>
-                                            <th class="text-nowrap">Action</th>
+                                            <th>Message</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -99,8 +98,6 @@ $total_feedback = $result->num_rows;
                                             <td><?=$row['name']?></td>
                                             <td><?=$row['mobile']?></td>
                                             <td><?=$row['msg']?></td>
-                                            
-                                            
                                         </tr>
 										<?php
                                             }

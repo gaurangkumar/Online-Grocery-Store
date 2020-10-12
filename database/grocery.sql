@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2020 at 07:52 AM
+-- Generation Time: Oct 12, 2020 at 04:56 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -86,6 +86,13 @@ CREATE TABLE `feedback` (
   `uid` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`fid`, `name`, `mobile`, `msg`, `uid`) VALUES
+(1, 'Barak Obama', '9876543210', 'I am very impressed with this amazing website.', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -99,6 +106,13 @@ CREATE TABLE `ord` (
   `total` int(11) DEFAULT NULL,
   `date` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ord`
+--
+
+INSERT INTO `ord` (`oid`, `uid`, `total`, `date`) VALUES
+(1, 1, 240, '2020-10-12 17:31:03');
 
 -- --------------------------------------------------------
 
@@ -116,6 +130,14 @@ CREATE TABLE `order_items` (
   `subtotal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`item_id`, `oid`, `pid`, `quantity`, `amount`, `subtotal`) VALUES
+(1, 1, 1, 2, 50, 100),
+(2, 1, 2, 10, 14, 140);
+
 -- --------------------------------------------------------
 
 --
@@ -130,6 +152,13 @@ CREATE TABLE `payment` (
   `total_amount` int(11) DEFAULT NULL,
   `payment_type` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`payid`, `oid`, `uid`, `total_amount`, `payment_type`) VALUES
+(1, 1, 1, 240, 'COD');
 
 -- --------------------------------------------------------
 
@@ -286,22 +315,28 @@ ALTER TABLE `category`
   MODIFY `cid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `fid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `ord`
 --
 ALTER TABLE `ord`
-  MODIFY `oid` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `oid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payid` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `payid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product`
