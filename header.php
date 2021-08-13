@@ -71,11 +71,10 @@
               <div class="w3ls_vegetables">
                 <ul class="dropdown-menu drp-mnu">
                     <?php
-                    if(isset($_SESSION['USER_ID']) && !empty($_SESSION['USER_ID'])) {
+                    if (isset($_SESSION['USER_ID']) && !empty($_SESSION['USER_ID'])) {
                         echo '<li><a href="#">'.ucwords($_SESSION['USER_NAME']).'</a></li>';
                         echo '<li><a href="logout.php">Logout</a></li>';
-                    }
-                    else {
+                    } else {
                         echo '<li><a href="login.php">Login/Signup</a></li>';
                     }
                     ?>
