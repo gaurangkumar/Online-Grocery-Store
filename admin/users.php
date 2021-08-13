@@ -94,7 +94,7 @@ $total_user = $result->num_rows;
                                         <?php
                                         if ($total_user) {
                                             while ($row = $result->fetch_assoc()) {
-                                        ?>
+                                                ?>
                                         <tr>
                                             <td><?=$row['uid']?></td>
                                             <td><?=ucwords($row['name'])?></td>
